@@ -1,0 +1,66 @@
+#pragma once
+
+#include <cassert>
+#include <cmath>
+
+#include <Eigen/Core>
+
+namespace open3d
+{
+    template<typename T>
+    struct Vector3
+    {
+        typedef union alignas(4 * sizeof(T)) _Type
+        {
+            // data
+            struct { T x, y, z; };
+            struct { T r, g, b; };
+
+            // subscript operator: readwrite
+            T& operator [](const int& i)
+            {
+                // catch error in debug mode
+                assert(0 <= i && i < 3);
+
+                switch(i)
+                {
+                    default:
+                    case 0: return x;
+                    case 1: return y;
+                    case 2: return z;
+                };
+            }
+            // subscript operator: readonly
+            const T& operator [](const int& i) const
+            {
+                // catch error in debug mode
+                assert(0 <= i && i < 3);
+
+                switch(i)
+                {
+                    default:
+                    case 0: return x;
+                    case 1: return y;
+                    case 2: return z;
+                };
+            }
+            // casting operator
+            operator T*()
+            {
+                return reinterpret_cast<T*>(this);
+            }
+            operator Eigen::Matrix<T, 3, 1>()
+            {
+                return Eigen::Matrix<T, 3, 1>{ x, y, z };
+            }
+        } Type;
+    };
+
+
+    extern "C"
+    {
+        typedef Vector3<int>::Type Vector3i;
+        typedef Vector3<float>::Type Vector3f;
+        typedef Vector3<double>::Type Vector3d;
+    }
+}
