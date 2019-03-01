@@ -3,8 +3,6 @@
 #include <cassert>
 #include <cmath>
 
-#include <Eigen/Core>
-
 namespace open3d
 {
     template<typename T>
@@ -15,6 +13,7 @@ namespace open3d
             // data
             struct { T x, y, z; };
             struct { T r, g, b; };
+            T s[];
 
             // subscript operator: readwrite
             T& operator [](const int& i)
@@ -45,13 +44,13 @@ namespace open3d
                 };
             }
             // casting operator
-            operator T*()
+            operator T* const()
             {
                 return reinterpret_cast<T*>(this);
             }
-            operator Eigen::Matrix<T, 3, 1>()
+            operator const T* const()
             {
-                return Eigen::Matrix<T, 3, 1>{ x, y, z };
+                return reinterpret_cast<T*>(this);
             }
         } Type;
     };

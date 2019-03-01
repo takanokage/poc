@@ -4,7 +4,6 @@
 using namespace std;
 
 #include "types.h"
-#include <Eigen/Core>
 
 #include "performance.h"
 
@@ -79,7 +78,7 @@ int main(int argc, char **argv)
     cout << endl;
 
     cout << "cast to a float*" << endl;
-    open3d::Vector3f v3 = {5.0f, 5.1f, 5.2f };
+    open3d::Vector3f v3 = { 5.0f, 5.1f, 5.2f };
     float* vf = v3;
 
     cout << setw(width) << vf[0];
@@ -105,40 +104,6 @@ int main(int argc, char **argv)
     cout << setw(width) << v3[3] << endl;
     cout << endl;
 
-    cout << "conversion from Eigen::Vector3f" << endl;
-    Eigen::Vector3f ev = { 4.0f, 4.1f, 4.2f };
-    cout << "Eigen::Vector3f ev: " << sizeof(ev) << endl;
-
-    cout << setw(width) << ev[0];
-    cout << setw(width) << ev[1];
-    cout << setw(width) << ev[2];
-    cout << setw(width) << ev[3] << endl;
-    cout << endl;
-
-    ev = v;
-
-    cout << setw(width) << ev[0];
-    cout << setw(width) << ev[1];
-    cout << setw(width) << ev[2];
-    cout << setw(width) << ev[3] << endl;
-    cout << endl;
-
-    ev << 7.0, 7.1, 7.2, 7.3, 7.4;
-
-    cout << setw(width) << ev[0];
-    cout << setw(width) << ev[1];
-    cout << setw(width) << ev[2];
-    cout << setw(width) << ev[3];
-    cout << setw(width) << ev[4] << endl;
-    cout << endl;
-
-    cout << setw(width) << v[0];
-    cout << setw(width) << v[1];
-    cout << setw(width) << v[2];
-    cout << setw(width) << v[3];
-    cout << setw(width) << v[4] << endl;
-    cout << endl;
-
     cout << "const operator[] test" << endl;
     const open3d::Vector3f v8 = { 8.0f, 8.1f, 8.2f };
 
@@ -149,12 +114,11 @@ int main(int argc, char **argv)
     cout << setw(width) << v8[4] << endl;
     cout << endl;
 
-    cout << "measure performance of custom[] using 1bil loops" << endl;
+    int loops = (int)1e7;
+    cout << "measure performance of custom[] using " << loops << " loops" << endl;
     Performance::Start();
-    for (int i = 0; i < 1000000000; i++)
-    {
-        v[i % 3] = sqrt(i * v[(i + 1) % 3]);
-    }
+    for (int i = 0; i < loops; i++)
+        v[i % 3] = v[rand() % 3];
     Performance::Stop();
     cout << "execution time: " << Performance::Duration() << " ms" << endl;
     cout << setw(width) << v[0];
@@ -162,13 +126,22 @@ int main(int argc, char **argv)
     cout << setw(width) << v[2] << endl;
     cout << endl;
 
-    cout << "measure performance of float[] using 1bil loops" << endl;
-    float a[3];
+    cout << "measure performance of s[] using " << loops << " loops" << endl;
     Performance::Start();
-    for (int i = 0; i < 1000000000; i++)
-    {
-        a[i % 3] = sqrt(i * a[(i + 1) % 3]);
-    }
+    for (int i = 0; i < loops; i++)
+        v.s[i % 3] = v.s[rand() % 3];
+    Performance::Stop();
+    cout << "execution time: " << Performance::Duration() << " ms" << endl;
+    cout << setw(width) << v.s[0];
+    cout << setw(width) << v.s[1];
+    cout << setw(width) << v.s[2] << endl;
+    cout << endl;
+
+    cout << "measure performance of (float*)[] using " << loops << " loops" << endl;
+    float* const a = v;
+    Performance::Start();
+    for (int i = 0; i < loops; i++)
+        a[i % 3] = a[rand() % 3];
     Performance::Stop();
     cout << "execution time: " << Performance::Duration() << " ms" << endl;
     cout << setw(width) << a[0];
