@@ -115,6 +115,7 @@ int main(int argc, char **argv)
     cout << endl;
 
     int loops = (int)1e7;
+    srand(0);
     cout << "measure performance of custom[] using " << loops << " loops" << endl;
     Performance::Start();
     for (int i = 0; i < loops; i++)
@@ -126,6 +127,7 @@ int main(int argc, char **argv)
     cout << setw(width) << v[2] << endl;
     cout << endl;
 
+    srand(0);
     cout << "measure performance of s[] using " << loops << " loops" << endl;
     Performance::Start();
     for (int i = 0; i < loops; i++)
@@ -137,6 +139,7 @@ int main(int argc, char **argv)
     cout << setw(width) << v.s[2] << endl;
     cout << endl;
 
+    srand(0);
     cout << "measure performance of (float*)[] using " << loops << " loops" << endl;
     float* const a = v;
     Performance::Start();

@@ -29,6 +29,7 @@ namespace open3d
                     case 2: return z;
                 };
             }
+
             // subscript operator: readonly
             const T& operator [](const int& i) const
             {
@@ -43,11 +44,14 @@ namespace open3d
                     case 2: return z;
                 };
             }
-            // casting operator
+
+            // casting operator: readwrite
             operator T* const()
             {
                 return reinterpret_cast<T*>(this);
             }
+
+            // casting operator: readonly
             operator const T* const()
             {
                 return reinterpret_cast<T*>(this);
