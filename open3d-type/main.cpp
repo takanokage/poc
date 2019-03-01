@@ -64,7 +64,7 @@ int main(int argc, char **argv)
     cout << endl;
 
     cout << "alignment" << endl;
-    cout << "size:               " << 3 * sizeof(float) << endl;
+    cout << "sizeof(3xfloat):    " << 3 * sizeof(float) << endl;
     cout << "type alignment:     " << sizeof(open3d::Vector3f) << endl;
     cout << "variable alignment: " << sizeof(v) << endl;
     cout << endl;
