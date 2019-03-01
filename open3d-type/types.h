@@ -55,7 +55,6 @@ namespace open3d
         } Type;
     };
 
-
     extern "C"
     {
         typedef Vector3<int>::Type Vector3i;
