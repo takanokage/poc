@@ -12,7 +12,6 @@ float& open3d::Vector3f::operator [](const int& i)
     // catch error in debug mode
     assert(0 <= i && i < 3);
 
-    //*/// v0
     switch(i)
     {
         default:
@@ -20,9 +19,6 @@ float& open3d::Vector3f::operator [](const int& i)
         case 1: return y;
         case 2: return z;
     };
-    /*/// v1
-    return (i == 0) ? x : ((i == 1) ? y : ((i == 2) ? z : x));
-    //*///
 }
 
 // ----------------------------------------------------------------------------
@@ -33,7 +29,6 @@ const float& open3d::Vector3f::operator [](const int& i) const
     // catch error in debug mode
     assert(0 <= i && i < 3);
 
-    //*/// v0
     switch(i)
     {
         default:
@@ -41,9 +36,6 @@ const float& open3d::Vector3f::operator [](const int& i) const
         case 1: return y;
         case 2: return z;
     };
-    /*/// v1
-    return (i == 0) ? x : ((i == 1) ? y : ((i == 2) ? z : x));
-    //*///
 }
 
 // ----------------------------------------------------------------------------
