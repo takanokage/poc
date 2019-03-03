@@ -60,3 +60,10 @@ bool open3d::Vector3f::operator ==(const open3d::Vector3f& v) const
 {
     return (x == v.x) && (y == v.y) && (z == v.z);
 }
+
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+bool open3d::Vector3f::operator !=(const open3d::Vector3f& v) const
+{
+    return !(this->operator==(v));
+}

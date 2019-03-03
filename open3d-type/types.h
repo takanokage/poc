@@ -19,6 +19,7 @@ namespace open3d
         operator float* const();
         operator const float* const();
         bool operator ==(const _Vector3f& v) const;
+        bool operator !=(const _Vector3f& v) const;
     } Vector3f;
     }
 }
