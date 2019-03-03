@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <iostream>
 #include <iomanip>
 #include <string>
@@ -5,6 +6,7 @@ using namespace std;
 
 #include "types.h"
 using namespace open3d;
+using namespace open3d::DIM;
 
 #include "performance.h"
 
@@ -155,6 +157,49 @@ int main(int argc, char **argv)
     cout << setw(width) << v8[0];
     cout << setw(width) << v8[1];
     cout << setw(width) << v8[2] << endl;
+    cout << endl;
+
+    vector<open3d::Vector3f> points(10);
+    for(int i = 0; i < 10; i++)
+        for(int j = 0; j < 3; j++)
+            points[i][j] = (float)rand() / RAND_MAX;
+
+    for (int i = 0; i < 10; i++)
+    {
+        cout << setw(width) << points[i][0];
+        cout << setw(width) << points[i][1];
+        cout << setw(width) << points[i][2] << endl;
+    }
+    cout << endl;
+
+    // sort ascending on X
+    sort(points.begin(), points.end(), open3d::Vector3f::LEX);
+    for (int i = 0; i < 10; i++)
+    {
+        cout << setw(width) << points[i][0];
+        cout << setw(width) << points[i][1];
+        cout << setw(width) << points[i][2] << endl;
+    }
+    cout << endl;
+
+    // sort ascending on Y
+    sort(points.begin(), points.end(), open3d::Vector3f::LEY);
+    for (int i = 0; i < 10; i++)
+    {
+        cout << setw(width) << points[i][0];
+        cout << setw(width) << points[i][1];
+        cout << setw(width) << points[i][2] << endl;
+    }
+    cout << endl;
+
+    // sort ascending on Z
+    sort(points.begin(), points.end(), open3d::Vector3f::LEZ);
+    for (int i = 0; i < 10; i++)
+    {
+        cout << setw(width) << points[i][0];
+        cout << setw(width) << points[i][1];
+        cout << setw(width) << points[i][2] << endl;
+    }
     cout << endl;
 
     return 0;
