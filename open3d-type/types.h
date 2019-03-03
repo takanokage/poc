@@ -7,6 +7,14 @@ extern "C"
 {
     namespace open3d
     {
+        enum
+        {
+            X = 0,
+            Y = 1,
+            Z = 2,
+            W = 3
+        };
+
         typedef union alignas(4 * sizeof(float)) _Vector3f
         {
             // data

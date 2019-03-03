@@ -4,13 +4,9 @@
 using namespace std;
 
 #include "types.h"
+using namespace open3d;
 
 #include "performance.h"
-
-#define X 0
-#define Y 1
-#define Z 2
-#define W 3
 
 int main(int argc, char **argv)
 {
