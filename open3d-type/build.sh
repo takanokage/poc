@@ -7,7 +7,8 @@ echo generating...
 mkdir -p build
 cd build
 
-cmake .. -DCMAKE_BUILD_TYPE=RELEASE
+cmake .. -DCMAKE_BUILD_TYPE=Release
+#cmake .. -DCMAKE_BUILD_TYPE=Debug
 
 echo
 echo building...

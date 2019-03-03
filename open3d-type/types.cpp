@@ -23,7 +23,7 @@ const float& open3d::Vector3f::operator [](const int& i) const
     // catch error in debug mode
     assert(0 <= i && i < 3);
 
-    return ((float*)this)[i];
+    return ((const float* const)this)[i];
 }
 
 // ----------------------------------------------------------------------------
@@ -39,7 +39,7 @@ open3d::Vector3f::operator float* const()
 // ----------------------------------------------------------------------------
 open3d::Vector3f::operator const float* const()
 {
-    return reinterpret_cast<float*>(this);
+    return reinterpret_cast<const float* const>(this);
 }
 
 // ----------------------------------------------------------------------------

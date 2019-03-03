@@ -37,14 +37,12 @@ int main(int argc, char **argv)
 
     cout << setw(width) << v[0];
     cout << setw(width) << v[1];
-    cout << setw(width) << v[2];
-    cout << setw(width) << v[3] << endl;
+    cout << setw(width) << v[2] << endl;
     cout << endl;
 
     printf("%4.1f\n", v[0]);
     printf("%4.1f\n", v[1]);
     printf("%4.1f\n", v[2]);
-    printf("%4.1f\n", v[3]);
     cout << endl;
 
     cout << "indexing using x, y, z named members" << endl;
@@ -84,24 +82,20 @@ int main(int argc, char **argv)
     cout << setw(width) << vf[0];
     cout << setw(width) << vf[1];
     cout << setw(width) << vf[2];
-    cout << setw(width) << vf[3] << endl;
     cout << endl;
 
     vf[0] = 6.0f;
     vf[1] = 6.1f;
     vf[2] = 6.2f;
-    vf[3] = 6.3f;
 
     cout << setw(width) << vf[0];
     cout << setw(width) << vf[1];
-    cout << setw(width) << vf[2];
-    cout << setw(width) << vf[3] << endl;
+    cout << setw(width) << vf[2] << endl;
     cout << endl;
 
     cout << setw(width) << v3[0];
     cout << setw(width) << v3[1];
-    cout << setw(width) << v3[2];
-    cout << setw(width) << v3[3] << endl;
+    cout << setw(width) << v3[2] << endl;
     cout << endl;
 
     cout << "const operator[] test" << endl;
@@ -109,9 +103,7 @@ int main(int argc, char **argv)
 
     cout << setw(width) << v8[0];
     cout << setw(width) << v8[1];
-    cout << setw(width) << v8[2];
-    cout << setw(width) << v8[3];
-    cout << setw(width) << v8[4] << endl;
+    cout << setw(width) << v8[2] << endl;
     cout << endl;
 
     int loops = (int)1e8;
@@ -132,6 +124,7 @@ int main(int argc, char **argv)
 
     srand(0);
     cout << "measure performance of custom[] using " << loops << " loops" << endl;
+    v = { 5.0f, 5.1f, 5.2f };
     Performance::Start();
     for (int i = 0; i < loops; i++)
         v[i % 3] = v[rand() % 3];
@@ -144,10 +137,13 @@ int main(int argc, char **argv)
 
     srand(0);
     cout << "measure performance of (float*)[] using " << loops << " loops" << endl;
+    v = { 6.0f, 6.1f, 6.2f };
     float* const a = (float* const)v;
+    // for (int i = 0; i < loops; i++)
+    //     a[i % 3] = a[rand() % 3];
     Performance::Start();
     for (int i = 0; i < loops; i++)
-        a[i % 3] = a[rand() % 3];
+        ((float*)a)[i % 3] = ((float*)a)[rand() % 3];
     Performance::Stop();
     cout << "execution time: " << Performance::Duration() << " ms" << endl;
     cout << setw(width) << a[0];
@@ -162,9 +158,7 @@ int main(int argc, char **argv)
 
     cout << setw(width) << v8[0];
     cout << setw(width) << v8[1];
-    cout << setw(width) << v8[2];
-    cout << setw(width) << v8[3];
-    cout << setw(width) << v8[4] << endl;
+    cout << setw(width) << v8[2] << endl;
     cout << endl;
 
     return 0;
