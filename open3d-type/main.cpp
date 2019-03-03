@@ -114,7 +114,7 @@ int main(int argc, char **argv)
     cout << setw(width) << v8[4] << endl;
     cout << endl;
 
-    int loops = (int)1e7;
+    int loops = (int)1e8;
     srand(0);
     cout << "measure performance of custom[] using " << loops << " loops" << endl;
     Performance::Start();
@@ -128,15 +128,15 @@ int main(int argc, char **argv)
     cout << endl;
 
     srand(0);
-    cout << "measure performance of s[] using " << loops << " loops" << endl;
+    cout << "measure performance of f[] using " << loops << " loops" << endl;
     Performance::Start();
     for (int i = 0; i < loops; i++)
-        v.s[i % 3] = v.s[rand() % 3];
+        v.f[i % 3] = v.f[rand() % 3];
     Performance::Stop();
     cout << "execution time: " << Performance::Duration() << " ms" << endl;
-    cout << setw(width) << v.s[0];
-    cout << setw(width) << v.s[1];
-    cout << setw(width) << v.s[2] << endl;
+    cout << setw(width) << v.f[0];
+    cout << setw(width) << v.f[1];
+    cout << setw(width) << v.f[2] << endl;
     cout << endl;
 
     srand(0);
