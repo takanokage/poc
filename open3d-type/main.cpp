@@ -116,6 +116,11 @@ int main(int argc, char **argv)
 
     int loops = (int)1e8;
     srand(0);
+    float* const b = (float* const)v;
+    for (int i = 0; i < loops; i++)
+        b[i % 3] = b[rand() % 3];
+
+    srand(0);
     cout << "measure performance of custom[] using " << loops << " loops" << endl;
     Performance::Start();
     for (int i = 0; i < loops; i++)

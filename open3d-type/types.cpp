@@ -21,7 +21,7 @@ float& open3d::Vector3f::operator [](const int& i)
         case 2: return z;
     };
     /*/// v1
-    return f[i];
+    return ((float*)this)[i];
     //*///
 }
 
@@ -42,7 +42,7 @@ const float& open3d::Vector3f::operator [](const int& i) const
         case 2: return z;
     };
     /*/// v1
-    return f[i];
+    return ((float*)this)[i];
     //*///
 }
 
