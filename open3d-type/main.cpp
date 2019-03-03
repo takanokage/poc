@@ -79,7 +79,7 @@ int main(int argc, char **argv)
 
     cout << "cast to a float*" << endl;
     open3d::Vector3f v3 = { 5.0f, 5.1f, 5.2f };
-    float* vf = v3;
+    float* vf = (float*)v3;
 
     cout << setw(width) << vf[0];
     cout << setw(width) << vf[1];
@@ -141,7 +141,7 @@ int main(int argc, char **argv)
 
     srand(0);
     cout << "measure performance of (float*)[] using " << loops << " loops" << endl;
-    float* const a = v;
+    float* const a = (float* const)v;
     Performance::Start();
     for (int i = 0; i < loops; i++)
         a[i % 3] = a[rand() % 3];
@@ -150,6 +150,18 @@ int main(int argc, char **argv)
     cout << setw(width) << a[0];
     cout << setw(width) << a[1];
     cout << setw(width) << a[2] << endl;
+    cout << endl;
+
+    cout << "const operator== test" << endl;
+    const open3d::Vector3f v9  = { 9.0f, 9.1f, 9.2f };
+    const open3d::Vector3f v10 = { 9.0f, 9.1f, 9.2f };
+    cout << "v9 is " << ((v9 == v10) ? "" : "not") << " equal to v10." << endl;
+
+    cout << setw(width) << v8[0];
+    cout << setw(width) << v8[1];
+    cout << setw(width) << v8[2];
+    cout << setw(width) << v8[3];
+    cout << setw(width) << v8[4] << endl;
     cout << endl;
 
     return 0;

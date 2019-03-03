@@ -5,27 +5,20 @@
 
 namespace open3d
 {
-    template<typename T>
-    struct Vector3
-    {
-        typedef union alignas(4 * sizeof(T))
-        {
-            // data
-            struct { T x, y, z; };
-            struct { T r, g, b; };
-            T s[];
-
-            T& operator [](const int& i);
-            const T& operator [](const int& i) const;
-            operator T* const();
-            operator const T* const();
-        } Type;
-    };
-
     extern "C"
     {
-        typedef Vector3<int>::Type Vector3i;
-        typedef Vector3<float>::Type Vector3f;
-        typedef Vector3<double>::Type Vector3d;
+    typedef union alignas(4 * sizeof(float)) _Vector3f
+    {
+        // data
+        struct { float x, y, z; };
+        struct { float r, g, b; };
+        float s[];
+
+        float& operator [](const int& i);
+        const float& operator [](const int& i) const;
+        operator float* const();
+        operator const float* const();
+        bool operator ==(const _Vector3f& v) const;
+    } Vector3f;
     }
 }

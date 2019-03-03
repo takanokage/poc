@@ -7,12 +7,12 @@
 // ----------------------------------------------------------------------------
 // subscript operator: readwrite
 // ----------------------------------------------------------------------------
-template<typename T>
-T& open3d::Vector3<T>::Type::operator [](const int& i)
+float& open3d::Vector3f::operator [](const int& i)
 {
     // catch error in debug mode
     assert(0 <= i && i < 3);
 
+    //*/// v0
     switch(i)
     {
         default:
@@ -20,17 +20,20 @@ T& open3d::Vector3<T>::Type::operator [](const int& i)
         case 1: return y;
         case 2: return z;
     };
+    /*/// v1
+    return (i == 0) ? x : ((i == 1) ? y : ((i == 2) ? z : x));
+    //*///
 }
 
 // ----------------------------------------------------------------------------
 // subscript operator: readonly
 // ----------------------------------------------------------------------------
-template<typename T>
-const T& open3d::Vector3<T>::Type::operator [](const int& i) const
+const float& open3d::Vector3f::operator [](const int& i) const
 {
     // catch error in debug mode
     assert(0 <= i && i < 3);
 
+    //*/// v0
     switch(i)
     {
         default:
@@ -38,40 +41,30 @@ const T& open3d::Vector3<T>::Type::operator [](const int& i) const
         case 1: return y;
         case 2: return z;
     };
+    /*/// v1
+    return (i == 0) ? x : ((i == 1) ? y : ((i == 2) ? z : x));
+    //*///
 }
 
 // ----------------------------------------------------------------------------
 // casting operator: readwrite
 // ----------------------------------------------------------------------------
-template<typename T>
-open3d::Vector3<T>::Type::operator T* const()
+open3d::Vector3f::operator float* const()
 {
-    return reinterpret_cast<T*>(this);
+    return reinterpret_cast<float*>(this);
 }
 
 // ----------------------------------------------------------------------------
 // casting operator: readonly
 // ----------------------------------------------------------------------------
-template<typename T>
-open3d::Vector3<T>::Type::operator const T* const()
+open3d::Vector3f::operator const float* const()
 {
-    return reinterpret_cast<T*>(this);
+    return reinterpret_cast<float*>(this);
 }
 
-// int
-template int& open3d::Vector3<int>::Type::operator [](const int& i);
-template const int& open3d::Vector3<int>::Type::operator [](const int& i) const;
-template open3d::Vector3<int>::Type::operator int* const();
-template open3d::Vector3<int>::Type::operator const int* const();
-
-// float
-template float& open3d::Vector3<float>::Type::operator [](const int& i);
-template const float& open3d::Vector3<float>::Type::operator [](const int& i) const;
-template open3d::Vector3<float>::Type::operator float* const();
-template open3d::Vector3<float>::Type::operator const float* const();
-
-// double
-template double& open3d::Vector3<double>::Type::operator [](const int& i);
-template const double& open3d::Vector3<double>::Type::operator [](const int& i) const;
-template open3d::Vector3<double>::Type::operator double* const();
-template open3d::Vector3<double>::Type::operator const double* const();
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+bool open3d::Vector3f::operator ==(const open3d::Vector3f& v) const
+{
+    return (x == v.x) && (y == v.y) && (z == v.z);
+}
