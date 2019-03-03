@@ -12,17 +12,7 @@ float& open3d::Vector3f::operator [](const int& i)
     // catch error in debug mode
     assert(0 <= i && i < 3);
 
-    /*/// v0
-    switch(i)
-    {
-        default:
-        case 0: return x;
-        case 1: return y;
-        case 2: return z;
-    };
-    /*/// v1
     return ((float*)this)[i];
-    //*///
 }
 
 // ----------------------------------------------------------------------------
@@ -33,17 +23,7 @@ const float& open3d::Vector3f::operator [](const int& i) const
     // catch error in debug mode
     assert(0 <= i && i < 3);
 
-    /*/// v0
-    switch(i)
-    {
-        default:
-        case 0: return x;
-        case 1: return y;
-        case 2: return z;
-    };
-    /*/// v1
     return ((float*)this)[i];
-    //*///
 }
 
 // ----------------------------------------------------------------------------

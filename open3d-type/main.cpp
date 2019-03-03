@@ -133,18 +133,6 @@ int main(int argc, char **argv)
     cout << endl;
 
     srand(0);
-    cout << "measure performance of f[] using " << loops << " loops" << endl;
-    Performance::Start();
-    for (int i = 0; i < loops; i++)
-        v.f[i % 3] = v.f[rand() % 3];
-    Performance::Stop();
-    cout << "execution time: " << Performance::Duration() << " ms" << endl;
-    cout << setw(width) << v.f[0];
-    cout << setw(width) << v.f[1];
-    cout << setw(width) << v.f[2] << endl;
-    cout << endl;
-
-    srand(0);
     cout << "measure performance of (float*)[] using " << loops << " loops" << endl;
     float* const a = (float* const)v;
     Performance::Start();

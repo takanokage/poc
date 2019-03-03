@@ -12,7 +12,6 @@ namespace open3d
         // data
         struct { float x, y, z; };
         struct { float r, g, b; };
-        float f[3];
 
         float& operator [](const int& i);
         const float& operator [](const int& i) const;
