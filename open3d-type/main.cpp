@@ -116,9 +116,19 @@ int main(int argc, char **argv)
 
     int loops = (int)1e8;
     srand(0);
-    float* const b = (float* const)v;
+    float b[3] = { -0.1f, -0.2f, -0.3f };
     for (int i = 0; i < loops; i++)
         b[i % 3] = b[rand() % 3];
+    cout << "measure performance of float[3] using " << loops << " loops" << endl;
+    Performance::Start();
+    for (int i = 0; i < loops; i++)
+        b[i % 3] = b[rand() % 3];
+    Performance::Stop();
+    cout << "execution time: " << Performance::Duration() << " ms" << endl;
+    cout << setw(width) << b[0];
+    cout << setw(width) << b[1];
+    cout << setw(width) << b[2] << endl;
+    cout << endl;
 
     srand(0);
     cout << "measure performance of custom[] using " << loops << " loops" << endl;
