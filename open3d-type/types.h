@@ -20,7 +20,7 @@ extern "C"
             } Type;
         };
 
-        static const float FLT_THRESHOLD = 1e;
+        static const float FLT_THRESHOLD = 1e3;
         static const float FLT_PRECISION = 6;
         static const float FLT_WIDTH = 14;
 
