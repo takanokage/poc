@@ -74,6 +74,7 @@ bool open3d::Vector3f::operator >=(const open3d::Vector3f& v) const
 }
 
 // ----------------------------------------------------------------------------
+// Less than or equal X component.
 // ----------------------------------------------------------------------------
 bool open3d::Vector3f::LEX(const open3d::Vector3f& v0, const open3d::Vector3f& v1)
 {
@@ -81,6 +82,7 @@ bool open3d::Vector3f::LEX(const open3d::Vector3f& v0, const open3d::Vector3f& v
 }
 
 // ----------------------------------------------------------------------------
+// Greater than or equal X component.
 // ----------------------------------------------------------------------------
 bool open3d::Vector3f::GEX(const open3d::Vector3f& v0, const open3d::Vector3f& v1)
 {
@@ -88,6 +90,7 @@ bool open3d::Vector3f::GEX(const open3d::Vector3f& v0, const open3d::Vector3f& v
 }
 
 // ----------------------------------------------------------------------------
+// Less than or equal Y component.
 // ----------------------------------------------------------------------------
 bool open3d::Vector3f::LEY(const open3d::Vector3f& v0, const open3d::Vector3f& v1)
 {
@@ -95,6 +98,7 @@ bool open3d::Vector3f::LEY(const open3d::Vector3f& v0, const open3d::Vector3f& v
 }
 
 // ----------------------------------------------------------------------------
+// Greater than or equal Y component.
 // ----------------------------------------------------------------------------
 bool open3d::Vector3f::GEY(const open3d::Vector3f& v0, const open3d::Vector3f& v1)
 {
@@ -102,6 +106,7 @@ bool open3d::Vector3f::GEY(const open3d::Vector3f& v0, const open3d::Vector3f& v
 }
 
 // ----------------------------------------------------------------------------
+// Less than or equal Z component.
 // ----------------------------------------------------------------------------
 bool open3d::Vector3f::LEZ(const open3d::Vector3f& v0, const open3d::Vector3f& v1)
 {
@@ -109,6 +114,7 @@ bool open3d::Vector3f::LEZ(const open3d::Vector3f& v0, const open3d::Vector3f& v
 }
 
 // ----------------------------------------------------------------------------
+// Greater than or equal Z component.
 // ----------------------------------------------------------------------------
 bool open3d::Vector3f::GEZ(const open3d::Vector3f& v0, const open3d::Vector3f& v1)
 {
@@ -116,6 +122,7 @@ bool open3d::Vector3f::GEZ(const open3d::Vector3f& v0, const open3d::Vector3f& v
 }
 
 // ----------------------------------------------------------------------------
+// Display an open3d::Vector3f.
 // ----------------------------------------------------------------------------
 ostream& open3d::operator <<(ostream& os, const open3d::Vector3f& v)
 {

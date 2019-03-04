@@ -55,6 +55,7 @@ extern "C"
             friend std::ostream& operator <<(std::ostream& os, const _Vector3f& v);
         } Vector3f;
 
+        // Display an open3d::Vector3f.
         std::ostream& operator <<(std::ostream& os, const Vector3f& v);
     }
 }
