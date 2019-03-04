@@ -75,20 +75,20 @@ int main(int argc, char **argv)
 
     cout << "cast to a float*" << endl;
     open3d::Vector3f v3 = { 5.0f, 5.1f, 5.2f };
-    float* vf = (float*)v3;
+    float* vfloat = (float*)v3;
 
-    cout << setw(width) << vf[0];
-    cout << setw(width) << vf[1];
-    cout << setw(width) << vf[2];
+    cout << setw(width) << vfloat[0];
+    cout << setw(width) << vfloat[1];
+    cout << setw(width) << vfloat[2];
     cout << endl;
 
-    vf[0] = 6.0f;
-    vf[1] = 6.1f;
-    vf[2] = 6.2f;
+    vfloat[0] = 6.0f;
+    vfloat[1] = 6.1f;
+    vfloat[2] = 6.2f;
 
-    cout << setw(width) << vf[0];
-    cout << setw(width) << vf[1];
-    cout << setw(width) << vf[2] << endl;
+    cout << setw(width) << vfloat[0];
+    cout << setw(width) << vfloat[1];
+    cout << setw(width) << vfloat[2] << endl;
     cout << endl;
 
     cout << setw(width) << v3[0];
@@ -104,7 +104,7 @@ int main(int argc, char **argv)
     cout << setw(width) << v8[2] << endl;
     cout << endl;
 
-    int loops = (int)1e8;
+    int loops = (int)1e7;
     srand(0);
     float b[3] = { -0.1f, -0.2f, -0.3f };
     for (int i = 0; i < loops; i++)
@@ -186,6 +186,34 @@ int main(int argc, char **argv)
     sort(points.begin(), points.end(), open3d::Vector3f::LEZ);
     for (int i = 0; i < 10; i++)
         cout << points[i] << endl;
+    cout << endl;
+
+    cout << "test operators:" << endl;
+    open3d::Vector3f va = { 2.3f, 2.4f, 2.5f };
+    open3d::Vector3f vb = { 3.2f, 4.2f, 5.2f };
+    open3d::Vector3f vc = va + vb;
+    cout << va << " + " << endl;
+    cout << vb << " = " << endl;
+    cout << vc << endl;
+    cout << endl;
+
+    open3d::Vector3f vd = va - vb;
+    cout << va << " - " << endl;
+    cout << vb << " = " << endl;
+    cout << vd << endl;
+    cout << endl;
+
+    float value = 3.5;
+    open3d::Vector3f ve = va * value;
+    cout << va << " * ";
+    cout << fixed << value << " = " << endl;
+    cout << ve << endl;
+    cout << endl;
+
+    open3d::Vector3f vf = va / value;
+    cout << va << " / ";
+    cout << fixed << value << " = " << endl;
+    cout << vf << endl;
     cout << endl;
 
     return 0;

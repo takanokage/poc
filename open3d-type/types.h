@@ -44,6 +44,15 @@ extern "C"
             bool operator <=(const _Vector3f& v) const;
             bool operator >=(const _Vector3f& v) const;
 
+            // addition
+            _Vector3f operator +(const _Vector3f& v) const;
+            // subtraction
+            _Vector3f operator -(const _Vector3f& v) const;
+            // multiply with scalar
+            _Vector3f operator *(const float& value) const;
+            // divide by scalar
+            _Vector3f operator /(const float& value) const;
+
             // Less than or equal X component.
             // Comparator for use with std::sort.
             static bool LEX(const _Vector3f& v0, const _Vector3f& v1);

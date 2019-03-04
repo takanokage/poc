@@ -74,6 +74,46 @@ bool open3d::Vector3f::operator >=(const open3d::Vector3f& v) const
 }
 
 // ----------------------------------------------------------------------------
+// addtion.
+// ----------------------------------------------------------------------------
+open3d::Vector3f open3d::Vector3f::operator +(const open3d::Vector3f& v) const
+{
+    Vector3f output = {x + v.x, y + v.y, z + v.z };
+
+    return output;
+}
+
+// ----------------------------------------------------------------------------
+// subtraction.
+// ----------------------------------------------------------------------------
+open3d::Vector3f open3d::Vector3f::operator -(const open3d::Vector3f& v) const
+{
+    Vector3f output = {x - v.x, y - v.y, z - v.z };
+
+    return output;
+}
+
+// ----------------------------------------------------------------------------
+// multiply with scalar.
+// ----------------------------------------------------------------------------
+open3d::Vector3f open3d::Vector3f::operator *(const float& value) const
+{
+    Vector3f output = {x * value, y * value, z * value };
+
+    return output;
+}
+
+// ----------------------------------------------------------------------------
+// divide by scalar.
+// ----------------------------------------------------------------------------
+open3d::Vector3f open3d::Vector3f::operator /(const float& value) const
+{
+    Vector3f output = {x / value, y / value, z / value };
+
+    return output;
+}
+
+// ----------------------------------------------------------------------------
 // Less than or equal X component.
 // ----------------------------------------------------------------------------
 bool open3d::Vector3f::LEX(const open3d::Vector3f& v0, const open3d::Vector3f& v1)
