@@ -48,14 +48,26 @@ extern "C"
             _Vector3f operator +(const _Vector3f& v) const;
             // subtraction
             _Vector3f operator -(const _Vector3f& v) const;
-            // multiply with scalar
-            _Vector3f operator *(const float& value) const;
-            // divide by scalar
-            _Vector3f operator /(const float& value) const;
             // addition
-            _Vector3f operator +=(const _Vector3f& v);
+            _Vector3f& operator +=(const _Vector3f& v);
             // subtraction
-            _Vector3f operator -=(const _Vector3f& v);
+            _Vector3f& operator -=(const _Vector3f& v);
+            // addition
+            _Vector3f operator +(const float& v) const;
+            // subtraction
+            _Vector3f operator -(const float& v) const;
+            // multiply with scalar
+            _Vector3f operator *(const float& v) const;
+            // divide by scalar
+            _Vector3f operator /(const float& v) const;
+            // addition
+            _Vector3f& operator +=(const float& v);
+            // subtraction
+            _Vector3f& operator -=(const float& v);
+            // multiply with scalar
+            _Vector3f& operator *=(const float& v);
+            // divide by scalar
+            _Vector3f& operator /=(const float& v);
 
             // Less than or equal X component.
             // Comparator for use with std::sort.

@@ -94,29 +94,9 @@ open3d::Vector3f open3d::Vector3f::operator -(const open3d::Vector3f& v) const
 }
 
 // ----------------------------------------------------------------------------
-// multiply with scalar.
-// ----------------------------------------------------------------------------
-open3d::Vector3f open3d::Vector3f::operator *(const float& value) const
-{
-    Vector3f output = {x * value, y * value, z * value };
-
-    return output;
-}
-
-// ----------------------------------------------------------------------------
-// divide by scalar.
-// ----------------------------------------------------------------------------
-open3d::Vector3f open3d::Vector3f::operator /(const float& value) const
-{
-    Vector3f output = {x / value, y / value, z / value };
-
-    return output;
-}
-
-// ----------------------------------------------------------------------------
 // addtion.
 // ----------------------------------------------------------------------------
-open3d::Vector3f open3d::Vector3f::operator +=(const open3d::Vector3f& v)
+open3d::Vector3f& open3d::Vector3f::operator +=(const open3d::Vector3f& v)
 {
     x += v.x;
     y += v.y;
@@ -128,11 +108,99 @@ open3d::Vector3f open3d::Vector3f::operator +=(const open3d::Vector3f& v)
 // ----------------------------------------------------------------------------
 // subtraction.
 // ----------------------------------------------------------------------------
-open3d::Vector3f open3d::Vector3f::operator -=(const open3d::Vector3f& v)
+open3d::Vector3f& open3d::Vector3f::operator -=(const open3d::Vector3f& v)
 {
     x -= v.x;
     y -= v.y;
     z -= v.z;
+
+    return *this;
+}
+
+// ----------------------------------------------------------------------------
+// addtion.
+// ----------------------------------------------------------------------------
+open3d::Vector3f open3d::Vector3f::operator +(const float& v) const
+{
+    Vector3f output = {x + v, y + v, z + v };
+
+    return output;
+}
+
+// ----------------------------------------------------------------------------
+// subtraction.
+// ----------------------------------------------------------------------------
+open3d::Vector3f open3d::Vector3f::operator -(const float& v) const
+{
+    Vector3f output = {x - v, y - v, z - v };
+
+    return output;
+}
+
+// ----------------------------------------------------------------------------
+// multiply with scalar.
+// ----------------------------------------------------------------------------
+open3d::Vector3f open3d::Vector3f::operator *(const float& v) const
+{
+    Vector3f output = {x * v, y * v, z * v };
+
+    return output;
+}
+
+// ----------------------------------------------------------------------------
+// divide by scalar.
+// ----------------------------------------------------------------------------
+open3d::Vector3f open3d::Vector3f::operator /(const float& v) const
+{
+    Vector3f output = {x / v, y / v, z / v };
+
+    return output;
+}
+
+// ----------------------------------------------------------------------------
+// addtion.
+// ----------------------------------------------------------------------------
+open3d::Vector3f& open3d::Vector3f::operator +=(const float& v)
+{
+    x += v;
+    y += v;
+    z += v;
+
+    return *this;
+}
+
+// ----------------------------------------------------------------------------
+// subtraction.
+// ----------------------------------------------------------------------------
+open3d::Vector3f& open3d::Vector3f::operator -=(const float& v)
+{
+    x -= v;
+    y -= v;
+    z -= v;
+
+    return *this;
+}
+
+// ----------------------------------------------------------------------------
+// multiply with scalar.
+// ----------------------------------------------------------------------------
+open3d::Vector3f& open3d::Vector3f::operator *=(const float& v)
+{
+    x *= v;
+    y *= v;
+    z *= v;
+
+    return *this;
+}
+
+// ----------------------------------------------------------------------------
+// divide by scalar.
+// ----------------------------------------------------------------------------
+open3d::Vector3f& open3d::Vector3f::operator /=(const float& v)
+{
+    x /= v;
+    y /= v;
+    z /= v;
 
     return *this;
 }
