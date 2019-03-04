@@ -29,26 +29,34 @@ extern "C"
             struct { float x, y, z; };
             struct { float r, g, b; };
 
-            // subscript operators
+            // subscript operator: readwrite
             float& operator [](const int& i);
+            // subscript operator: readonly
             const float& operator [](const int& i) const;
 
-            // cast operators
+            // casting operator: readwrite
             explicit operator float* const();
+            // casting operator: readonly
             explicit operator const float* const();
 
-            // comparison operators
             bool operator ==(const _Vector3f& v) const;
             bool operator !=(const _Vector3f& v) const;
             bool operator <=(const _Vector3f& v) const;
             bool operator >=(const _Vector3f& v) const;
 
             // comparators for use with std::sort
+
+            // Less than or equal X component.
             static bool LEX(const _Vector3f& v0, const _Vector3f& v1);
+            // Greater than or equal X component.
             static bool GEX(const _Vector3f& v0, const _Vector3f& v1);
+            // Less than or equal Y component.
             static bool LEY(const _Vector3f& v0, const _Vector3f& v1);
+            // Greater than or equal Y component.
             static bool GEY(const _Vector3f& v0, const _Vector3f& v1);
+            // Less than or equal Z component.
             static bool LEZ(const _Vector3f& v0, const _Vector3f& v1);
+            // Greater than or equal Z component.
             static bool GEZ(const _Vector3f& v0, const _Vector3f& v1);
 
             // friend operators
