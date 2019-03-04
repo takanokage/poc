@@ -3,6 +3,8 @@
 #include <cassert>
 #include <cmath>
 
+#include <iostream>
+
 extern "C"
 {
     namespace open3d
@@ -17,6 +19,9 @@ extern "C"
                 W = 3
             } Type;
         };
+
+        static const float FLT_PRECISION = 6;
+        static const float FLT_WIDTH = 14;
 
         typedef union alignas(4 * sizeof(float)) _Vector3f
         {
@@ -46,6 +51,10 @@ extern "C"
             static bool LEZ(const _Vector3f& v0, const _Vector3f& v1);
             static bool GEZ(const _Vector3f& v0, const _Vector3f& v1);
 
+            // friend operators
+            friend std::ostream& operator <<(std::ostream& os, const _Vector3f& v);
         } Vector3f;
+
+        std::ostream& operator <<(std::ostream& os, const Vector3f& v);
     }
 }

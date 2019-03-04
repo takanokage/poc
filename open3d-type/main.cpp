@@ -159,47 +159,33 @@ int main(int argc, char **argv)
     cout << setw(width) << v8[2] << endl;
     cout << endl;
 
+    cout << "sort test" << endl;
     vector<open3d::Vector3f> points(10);
     for(int i = 0; i < 10; i++)
         for(int j = 0; j < 3; j++)
             points[i][j] = (float)rand() / RAND_MAX;
 
+    cout << "original data:" << endl;
     for (int i = 0; i < 10; i++)
-    {
-        cout << setw(width) << points[i][0];
-        cout << setw(width) << points[i][1];
-        cout << setw(width) << points[i][2] << endl;
-    }
+        cout << points[i] << endl;
     cout << endl;
 
-    // sort ascending on X
+    cout << "sort ascending on X:" << endl;
     sort(points.begin(), points.end(), open3d::Vector3f::LEX);
     for (int i = 0; i < 10; i++)
-    {
-        cout << setw(width) << points[i][0];
-        cout << setw(width) << points[i][1];
-        cout << setw(width) << points[i][2] << endl;
-    }
+        cout << points[i] << endl;
     cout << endl;
 
-    // sort ascending on Y
+    cout << "sort ascending on Y:" << endl;
     sort(points.begin(), points.end(), open3d::Vector3f::LEY);
     for (int i = 0; i < 10; i++)
-    {
-        cout << setw(width) << points[i][0];
-        cout << setw(width) << points[i][1];
-        cout << setw(width) << points[i][2] << endl;
-    }
+        cout << points[i] << endl;
     cout << endl;
 
-    // sort ascending on Z
+    cout << "sort ascending on Z:" << endl;
     sort(points.begin(), points.end(), open3d::Vector3f::LEZ);
     for (int i = 0; i < 10; i++)
-    {
-        cout << setw(width) << points[i][0];
-        cout << setw(width) << points[i][1];
-        cout << setw(width) << points[i][2] << endl;
-    }
+        cout << points[i] << endl;
     cout << endl;
 
     return 0;

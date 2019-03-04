@@ -4,6 +4,9 @@
 
 #include "types.h"
 
+#include <iomanip>
+using namespace std;
+
 // ----------------------------------------------------------------------------
 // subscript operator: readwrite
 // ----------------------------------------------------------------------------
@@ -110,4 +113,26 @@ bool open3d::Vector3f::LEZ(const open3d::Vector3f& v0, const open3d::Vector3f& v
 bool open3d::Vector3f::GEZ(const open3d::Vector3f& v0, const open3d::Vector3f& v1)
 {
     return v0.z >= v1.z;
+}
+
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+ostream& open3d::operator <<(ostream& os, const open3d::Vector3f& v)
+{
+    // save existing precision
+    int oldPrecision = cout.precision();
+
+    // set new precision
+    cout.precision(FLT_PRECISION);
+    cout.setf(ios::fixed);
+
+    cout << setw(FLT_WIDTH) << v[0];
+    cout << setw(FLT_WIDTH) << v[1];
+    cout << setw(FLT_WIDTH) << v[2];
+
+    // restore
+    cout.precision(oldPrecision);
+    cout.unsetf(ios::fixed);
+
+    cout.flush();
 }
