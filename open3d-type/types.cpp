@@ -94,7 +94,7 @@ open3d::Vector3f open3d::Vector3f::operator -(const open3d::Vector3f& v) const
 }
 
 // ----------------------------------------------------------------------------
-// addtion.
+// addtion assignment.
 // ----------------------------------------------------------------------------
 open3d::Vector3f& open3d::Vector3f::operator +=(const open3d::Vector3f& v)
 {
@@ -106,7 +106,7 @@ open3d::Vector3f& open3d::Vector3f::operator +=(const open3d::Vector3f& v)
 }
 
 // ----------------------------------------------------------------------------
-// subtraction.
+// subtraction assignment.
 // ----------------------------------------------------------------------------
 open3d::Vector3f& open3d::Vector3f::operator -=(const open3d::Vector3f& v)
 {
@@ -158,7 +158,7 @@ open3d::Vector3f open3d::Vector3f::operator /(const float& v) const
 }
 
 // ----------------------------------------------------------------------------
-// addtion.
+// addtion assignment.
 // ----------------------------------------------------------------------------
 open3d::Vector3f& open3d::Vector3f::operator +=(const float& v)
 {
@@ -170,7 +170,7 @@ open3d::Vector3f& open3d::Vector3f::operator +=(const float& v)
 }
 
 // ----------------------------------------------------------------------------
-// subtraction.
+// subtraction assignment.
 // ----------------------------------------------------------------------------
 open3d::Vector3f& open3d::Vector3f::operator -=(const float& v)
 {
@@ -182,7 +182,7 @@ open3d::Vector3f& open3d::Vector3f::operator -=(const float& v)
 }
 
 // ----------------------------------------------------------------------------
-// multiply with scalar.
+// multiplication assignment.
 // ----------------------------------------------------------------------------
 open3d::Vector3f& open3d::Vector3f::operator *=(const float& v)
 {
@@ -194,7 +194,7 @@ open3d::Vector3f& open3d::Vector3f::operator *=(const float& v)
 }
 
 // ----------------------------------------------------------------------------
-// divide by scalar.
+// division assignment.
 // ----------------------------------------------------------------------------
 open3d::Vector3f& open3d::Vector3f::operator /=(const float& v)
 {

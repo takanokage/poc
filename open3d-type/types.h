@@ -20,6 +20,7 @@ extern "C"
             } Type;
         };
 
+        static const float FLT_THRESHOLD = 1e;
         static const float FLT_PRECISION = 6;
         static const float FLT_WIDTH = 14;
 
@@ -48,9 +49,9 @@ extern "C"
             _Vector3f operator +(const _Vector3f& v) const;
             // subtraction
             _Vector3f operator -(const _Vector3f& v) const;
-            // addition
+            // addition assignment
             _Vector3f& operator +=(const _Vector3f& v);
-            // subtraction
+            // subtraction assignment
             _Vector3f& operator -=(const _Vector3f& v);
             // addition
             _Vector3f operator +(const float& v) const;
@@ -60,13 +61,13 @@ extern "C"
             _Vector3f operator *(const float& v) const;
             // divide by scalar
             _Vector3f operator /(const float& v) const;
-            // addition
+            // addition assignment
             _Vector3f& operator +=(const float& v);
-            // subtraction
+            // subtraction assignment
             _Vector3f& operator -=(const float& v);
-            // multiply with scalar
+            // multiplication assignment
             _Vector3f& operator *=(const float& v);
-            // divide by scalar
+            // division assignment
             _Vector3f& operator /=(const float& v);
 
             // friend operators
