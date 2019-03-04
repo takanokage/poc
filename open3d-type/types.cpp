@@ -258,8 +258,8 @@ bool open3d::Vector3f::GEZ(const open3d::Vector3f& v0, const open3d::Vector3f& v
 // ----------------------------------------------------------------------------
 ostream& open3d::operator <<(ostream& os, const open3d::Vector3f& v)
 {
-    // save existing precision
-    int oldPrecision = cout.precision();
+    // save
+    ios_base::fmtflags flags = cout.flags();
 
     // set new precision
     cout.precision(FLT_PRECISION);
@@ -270,8 +270,7 @@ ostream& open3d::operator <<(ostream& os, const open3d::Vector3f& v)
     cout << setw(FLT_WIDTH) << v[2];
 
     // restore
-    cout.precision(oldPrecision);
-    cout.unsetf(ios::fixed);
+    cout.flags(flags);
 
     cout.flush();
 }

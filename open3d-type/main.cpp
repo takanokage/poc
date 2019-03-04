@@ -33,9 +33,7 @@ int main(int argc, char **argv)
     // it will run fine in Release mode, it just won't do anything
     v[W] = 1.3;
 
-    cout << setw(width) << v[0];
-    cout << setw(width) << v[1];
-    cout << setw(width) << v[2] << endl;
+    cout << v << endl;
     cout << endl;
 
     printf("%4.1f\n", v[0]);
@@ -48,15 +46,11 @@ int main(int argc, char **argv)
     v.y = 2.1;
     v.z = 2.2;
 
-    cout << setw(width) << v.x;
-    cout << setw(width) << v.y;
-    cout << setw(width) << v.z << endl;
+    cout << v << endl;
     cout << endl;
 
     cout << "indexing using r, g, b named members" << endl;
-    cout << setw(width) << v.r;
-    cout << setw(width) << v.g;
-    cout << setw(width) << v.b << endl;
+    cout << v << endl;
     cout << endl;
 
     cout << "alignment" << endl;
@@ -68,40 +62,30 @@ int main(int argc, char **argv)
     cout << "initalization using initializer list" << endl;
     open3d::Vector3f v2 = { 3.0f, 3.1f, 3.2f };
 
-    cout << setw(width) << v2[0];
-    cout << setw(width) << v2[1];
-    cout << setw(width) << v2[2] << endl;
+    cout << v2 << endl;
     cout << endl;
 
     cout << "cast to a float*" << endl;
     open3d::Vector3f v3 = { 5.0f, 5.1f, 5.2f };
     float* vfloat = (float*)v3;
 
-    cout << setw(width) << vfloat[0];
-    cout << setw(width) << vfloat[1];
-    cout << setw(width) << vfloat[2];
+    cout << vfloat;
     cout << endl;
 
     vfloat[0] = 6.0f;
     vfloat[1] = 6.1f;
     vfloat[2] = 6.2f;
 
-    cout << setw(width) << vfloat[0];
-    cout << setw(width) << vfloat[1];
-    cout << setw(width) << vfloat[2] << endl;
+    cout << vfloat << endl;
     cout << endl;
 
-    cout << setw(width) << v3[0];
-    cout << setw(width) << v3[1];
-    cout << setw(width) << v3[2] << endl;
+    cout << v3 << endl;
     cout << endl;
 
     cout << "const operator[] test" << endl;
     const open3d::Vector3f v8 = { 8.0f, 8.1f, 8.2f };
 
-    cout << setw(width) << v8[0];
-    cout << setw(width) << v8[1];
-    cout << setw(width) << v8[2] << endl;
+    cout << v8 << endl;
     cout << endl;
 
     int loops = (int)1e7;
@@ -115,9 +99,7 @@ int main(int argc, char **argv)
         b[i % 3] = b[rand() % 3];
     Performance::Stop();
     cout << "execution time: " << Performance::Duration() << " ms" << endl;
-    cout << setw(width) << b[0];
-    cout << setw(width) << b[1];
-    cout << setw(width) << b[2] << endl;
+    cout << b << endl;
     cout << endl;
 
     srand(0);
@@ -128,9 +110,7 @@ int main(int argc, char **argv)
         v[i % 3] = v[rand() % 3];
     Performance::Stop();
     cout << "execution time: " << Performance::Duration() << " ms" << endl;
-    cout << setw(width) << v[0];
-    cout << setw(width) << v[1];
-    cout << setw(width) << v[2] << endl;
+    cout << v << endl;
     cout << endl;
 
     srand(0);
@@ -144,9 +124,7 @@ int main(int argc, char **argv)
         ((float*)a)[i % 3] = ((float*)a)[rand() % 3];
     Performance::Stop();
     cout << "execution time: " << Performance::Duration() << " ms" << endl;
-    cout << setw(width) << a[0];
-    cout << setw(width) << a[1];
-    cout << setw(width) << a[2] << endl;
+    cout << a << endl;
     cout << endl;
 
     cout << "const operator== test" << endl;
@@ -154,9 +132,7 @@ int main(int argc, char **argv)
     const open3d::Vector3f v10 = { 9.0f, 9.1f, 9.2f };
     cout << "v9 is " << ((v9 == v10) ? "" : "not") << " equal to v10." << endl;
 
-    cout << setw(width) << v8[0];
-    cout << setw(width) << v8[1];
-    cout << setw(width) << v8[2] << endl;
+    cout << v8 << endl;
     cout << endl;
 
     cout << "sort test" << endl;
@@ -203,16 +179,18 @@ int main(int argc, char **argv)
     cout << vd << endl;
     cout << endl;
 
+    cout.unsetf(ios::fixed);
+
     float value = 3.5;
     open3d::Vector3f ve = va * value;
     cout << va << " * ";
-    cout << fixed << value << " = " << endl;
+    cout << value << " = " << endl;
     cout << ve << endl;
     cout << endl;
 
     open3d::Vector3f vf = va / value;
     cout << va << " / ";
-    cout << fixed << value << " = " << endl;
+    cout << value << " = " << endl;
     cout << vf << endl;
     cout << endl;
 
