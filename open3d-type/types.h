@@ -44,19 +44,23 @@ extern "C"
             bool operator <=(const _Vector3f& v) const;
             bool operator >=(const _Vector3f& v) const;
 
-            // comparators for use with std::sort
-
             // Less than or equal X component.
+            // Comparator for use with std::sort.
             static bool LEX(const _Vector3f& v0, const _Vector3f& v1);
             // Greater than or equal X component.
+            // Comparator for use with std::sort.
             static bool GEX(const _Vector3f& v0, const _Vector3f& v1);
             // Less than or equal Y component.
+            // Comparator for use with std::sort.
             static bool LEY(const _Vector3f& v0, const _Vector3f& v1);
             // Greater than or equal Y component.
+            // Comparator for use with std::sort.
             static bool GEY(const _Vector3f& v0, const _Vector3f& v1);
             // Less than or equal Z component.
+            // Comparator for use with std::sort.
             static bool LEZ(const _Vector3f& v0, const _Vector3f& v1);
             // Greater than or equal Z component.
+            // Comparator for use with std::sort.
             static bool GEZ(const _Vector3f& v0, const _Vector3f& v1);
 
             // friend operators
