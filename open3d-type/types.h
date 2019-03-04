@@ -69,28 +69,28 @@ extern "C"
             // divide by scalar
             _Vector3f& operator /=(const float& v);
 
-            // Less than or equal X component.
-            // Comparator for use with std::sort.
-            static bool LEX(const _Vector3f& v0, const _Vector3f& v1);
-            // Greater than or equal X component.
-            // Comparator for use with std::sort.
-            static bool GEX(const _Vector3f& v0, const _Vector3f& v1);
-            // Less than or equal Y component.
-            // Comparator for use with std::sort.
-            static bool LEY(const _Vector3f& v0, const _Vector3f& v1);
-            // Greater than or equal Y component.
-            // Comparator for use with std::sort.
-            static bool GEY(const _Vector3f& v0, const _Vector3f& v1);
-            // Less than or equal Z component.
-            // Comparator for use with std::sort.
-            static bool LEZ(const _Vector3f& v0, const _Vector3f& v1);
-            // Greater than or equal Z component.
-            // Comparator for use with std::sort.
-            static bool GEZ(const _Vector3f& v0, const _Vector3f& v1);
-
             // friend operators
             friend std::ostream& operator <<(std::ostream& os, const _Vector3f& v);
         } Vector3f;
+
+        // Less than or equal X component.
+        // Comparator for use with std::sort.
+        bool LEX(const _Vector3f& v0, const _Vector3f& v1);
+        // Greater than or equal X component.
+        // Comparator for use with std::sort.
+        bool GEX(const _Vector3f& v0, const _Vector3f& v1);
+        // Less than or equal Y component.
+        // Comparator for use with std::sort.
+        bool LEY(const _Vector3f& v0, const _Vector3f& v1);
+        // Greater than or equal Y component.
+        // Comparator for use with std::sort.
+        bool GEY(const _Vector3f& v0, const _Vector3f& v1);
+        // Less than or equal Z component.
+        // Comparator for use with std::sort.
+        bool LEZ(const _Vector3f& v0, const _Vector3f& v1);
+        // Greater than or equal Z component.
+        // Comparator for use with std::sort.
+        bool GEZ(const _Vector3f& v0, const _Vector3f& v1);
 
         // Display an open3d::Vector3f.
         std::ostream& operator <<(std::ostream& os, const Vector3f& v);

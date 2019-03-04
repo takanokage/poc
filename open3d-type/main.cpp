@@ -147,19 +147,19 @@ int main(int argc, char **argv)
     cout << endl;
 
     cout << "sort ascending on X:" << endl;
-    sort(points.begin(), points.end(), open3d::Vector3f::LEX);
+    sort(points.begin(), points.end(), open3d::LEX);
     for (int i = 0; i < 10; i++)
         cout << points[i] << endl;
     cout << endl;
 
     cout << "sort ascending on Y:" << endl;
-    sort(points.begin(), points.end(), open3d::Vector3f::LEY);
+    sort(points.begin(), points.end(), open3d::LEY);
     for (int i = 0; i < 10; i++)
         cout << points[i] << endl;
     cout << endl;
 
     cout << "sort ascending on Z:" << endl;
-    sort(points.begin(), points.end(), open3d::Vector3f::LEZ);
+    sort(points.begin(), points.end(), open3d::LEZ);
     for (int i = 0; i < 10; i++)
         cout << points[i] << endl;
     cout << endl;
