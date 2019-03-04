@@ -52,6 +52,10 @@ extern "C"
             _Vector3f operator *(const float& value) const;
             // divide by scalar
             _Vector3f operator /(const float& value) const;
+            // addition
+            _Vector3f operator +=(const _Vector3f& v);
+            // subtraction
+            _Vector3f operator -=(const _Vector3f& v);
 
             // Less than or equal X component.
             // Comparator for use with std::sort.

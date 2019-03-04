@@ -114,6 +114,30 @@ open3d::Vector3f open3d::Vector3f::operator /(const float& value) const
 }
 
 // ----------------------------------------------------------------------------
+// addtion.
+// ----------------------------------------------------------------------------
+open3d::Vector3f open3d::Vector3f::operator +=(const open3d::Vector3f& v)
+{
+    x += v.x;
+    y += v.y;
+    z += v.z;
+
+    return *this;
+}
+
+// ----------------------------------------------------------------------------
+// subtraction.
+// ----------------------------------------------------------------------------
+open3d::Vector3f open3d::Vector3f::operator -=(const open3d::Vector3f& v)
+{
+    x -= v.x;
+    y -= v.y;
+    z -= v.z;
+
+    return *this;
+}
+
+// ----------------------------------------------------------------------------
 // Less than or equal X component.
 // ----------------------------------------------------------------------------
 bool open3d::Vector3f::LEX(const open3d::Vector3f& v0, const open3d::Vector3f& v1)

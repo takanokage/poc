@@ -216,5 +216,17 @@ int main(int argc, char **argv)
     cout << vf << endl;
     cout << endl;
 
+    open3d::Vector3f vg = va; vg += vb;
+    cout << vg << " += " << endl;
+    cout << vb << endl;
+    cout << vg << endl;
+    cout << endl;
+
+    open3d::Vector3f vh = va; vh -= vb;
+    cout << vh << " -= " << endl;
+    cout << vb << endl;
+    cout << vh << endl;
+    cout << endl;
+
     return 0;
 }
