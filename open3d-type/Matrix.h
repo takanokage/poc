@@ -5,25 +5,25 @@
 
 #include <iostream>
 
+typedef unsigned int uint;
+
 namespace open3d
 {
-    template<typename T, int R, int C>
+    template<typename T, uint R, uint C>
     struct Matrix
     {
-        /*/// v0
-        typedef union _Type
-        {
-            T s[R][C];
-        } Type;
-        /*/// v1
         typedef struct _Type
         {
             T s[R][C];
+
+            // subscript operator: readwrite
+            T& operator [](const uint& i);
+            // subscript operator: readonly
+            const T& operator [](const uint& i) const;
         } Type;
-        //*///
     };
 
-    template<typename T, int R>
+    template<typename T, uint R>
     using Vector = typename Matrix<T, R, 1>::Type;
 
     template<typename T>

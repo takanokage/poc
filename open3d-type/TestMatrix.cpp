@@ -23,7 +23,7 @@ void TestMatrix()
 
     open3d::Matrix<float, 3, 3>::Type m;
 
-    open3d::Vector<float, 3> v;
+    open3d::Vector<float, 3> v = { 1.0f, 1.1f, 1.2f };
 
     open3d::Vector3<float> v3 = { 0.0f, 0.1f, 0.2f };
 
