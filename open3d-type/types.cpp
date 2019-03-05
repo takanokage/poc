@@ -7,12 +7,6 @@
 #include <iomanip>
 using namespace std;
 
-template<typename T, int R>
-using Vector = typename open3d::Matrix<T, R, 1>;
-
-template<typename T>
-using Vector3 = Vector<T, 3>;
-
 // ----------------------------------------------------------------------------
 // subscript operator: readwrite
 // ----------------------------------------------------------------------------
@@ -312,29 +306,4 @@ ostream& open3d::operator <<(ostream& os, const open3d::Vector3f& v)
 }
 
 // Template instantiations: T <- float
-template float& open3d::Vector3f::operator [](const int& i);
-template const float& open3d::Vector3f::operator [](const int& i) const;
-template open3d::Vector3f::operator float* const();
-template open3d::Vector3f::operator const float* const();
-template bool open3d::Vector3f::operator ==(const open3d::Vector3f& v) const;
-template bool open3d::Vector3f::operator !=(const open3d::Vector3f& v) const;
-template bool open3d::Vector3f::operator <=(const open3d::Vector3f& v) const;
-template bool open3d::Vector3f::operator >=(const open3d::Vector3f& v) const;
-template open3d::Vector3f open3d::Vector3f::operator +(const open3d::Vector3f& v) const;
-template open3d::Vector3f open3d::Vector3f::operator -(const open3d::Vector3f& v) const;
-template open3d::Vector3f& open3d::Vector3f::operator +=(const open3d::Vector3f& v);
-template open3d::Vector3f& open3d::Vector3f::operator -=(const open3d::Vector3f& v);
-template open3d::Vector3f open3d::Vector3f::operator +(const float& v) const;
-template open3d::Vector3f open3d::Vector3f::operator -(const float& v) const;
-template open3d::Vector3f open3d::Vector3f::operator *(const float& v) const;
-template open3d::Vector3f open3d::Vector3f::operator /(const float& v) const;
-template open3d::Vector3f& open3d::Vector3f::operator +=(const float& v);
-template open3d::Vector3f& open3d::Vector3f::operator -=(const float& v);
-template open3d::Vector3f& open3d::Vector3f::operator *=(const float& v);
-template open3d::Vector3f& open3d::Vector3f::operator /=(const float& v);
-template bool open3d::Vector3f::LEX(const open3d::Vector3f& v0, const open3d::Vector3f& v1);
-template bool open3d::Vector3f::GEX(const open3d::Vector3f& v0, const open3d::Vector3f& v1);
-template bool open3d::Vector3f::LEY(const open3d::Vector3f& v0, const open3d::Vector3f& v1);
-template bool open3d::Vector3f::GEY(const open3d::Vector3f& v0, const open3d::Vector3f& v1);
-template bool open3d::Vector3f::LEZ(const open3d::Vector3f& v0, const open3d::Vector3f& v1);
-template bool open3d::Vector3f::GEZ(const open3d::Vector3f& v0, const open3d::Vector3f& v1);
+template class open3d::Vector3<float>;
