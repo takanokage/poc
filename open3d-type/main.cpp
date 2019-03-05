@@ -10,7 +10,16 @@ using namespace open3d::DIM;
 
 #include "performance.h"
 
+void TestVector3f();
+
 int main(int argc, char **argv)
+{
+    TestVector3f();
+
+    return 0;
+}
+
+void TestVector3f()
 {
     open3d::Vector3f v;
 
@@ -195,6 +204,4 @@ int main(int argc, char **argv)
     cout << vb << endl;
     cout << vh << endl;
     cout << endl;
-
-    return 0;
 }
