@@ -248,7 +248,7 @@ bool open3d::Vector3<T>::Type::LEX(const open3d::Vector3<T>::Type& v0, const ope
 // Greater than or equal X component.
 // ----------------------------------------------------------------------------
 template<typename T>
-bool open3d::Vector3<T>::Type::GEX(const typename open3d::Vector3<T>::Type& v0, const typename open3d::Vector3<T>::Type& v1)
+bool open3d::Vector3<T>::Type::GEX(const open3d::Vector3<T>::Type& v0, const open3d::Vector3<T>::Type& v1)
 {
     return v0.x >= v1.x;
 }
@@ -257,7 +257,7 @@ bool open3d::Vector3<T>::Type::GEX(const typename open3d::Vector3<T>::Type& v0, 
 // Less than or equal Y component.
 // ----------------------------------------------------------------------------
 template<typename T>
-bool open3d::Vector3<T>::Type::LEY(const typename open3d::Vector3<T>::Type& v0, const typename open3d::Vector3<T>::Type& v1)
+bool open3d::Vector3<T>::Type::LEY(const open3d::Vector3<T>::Type& v0, const open3d::Vector3<T>::Type& v1)
 {
     return v0.y <= v1.y;
 }
@@ -266,7 +266,7 @@ bool open3d::Vector3<T>::Type::LEY(const typename open3d::Vector3<T>::Type& v0, 
 // Greater than or equal Y component.
 // ----------------------------------------------------------------------------
 template<typename T>
-bool open3d::Vector3<T>::Type::GEY(const typename open3d::Vector3<T>::Type& v0, const typename open3d::Vector3<T>::Type& v1)
+bool open3d::Vector3<T>::Type::GEY(const open3d::Vector3<T>::Type& v0, const open3d::Vector3<T>::Type& v1)
 {
     return v0.y >= v1.y;
 }
@@ -275,7 +275,7 @@ bool open3d::Vector3<T>::Type::GEY(const typename open3d::Vector3<T>::Type& v0, 
 // Less than or equal Z component.
 // ----------------------------------------------------------------------------
 template<typename T>
-bool open3d::Vector3<T>::Type::LEZ(const typename open3d::Vector3<T>::Type& v0, const typename open3d::Vector3<T>::Type& v1)
+bool open3d::Vector3<T>::Type::LEZ(const open3d::Vector3<T>::Type& v0, const open3d::Vector3<T>::Type& v1)
 {
     return v0.z <= v1.z;
 }
@@ -284,7 +284,7 @@ bool open3d::Vector3<T>::Type::LEZ(const typename open3d::Vector3<T>::Type& v0, 
 // Greater than or equal Z component.
 // ----------------------------------------------------------------------------
 template<typename T>
-bool open3d::Vector3<T>::Type::GEZ(const typename open3d::Vector3<T>::Type& v0, const typename open3d::Vector3<T>::Type& v1)
+bool open3d::Vector3<T>::Type::GEZ(const open3d::Vector3<T>::Type& v0, const open3d::Vector3<T>::Type& v1)
 {
     return v0.z >= v1.z;
 }
