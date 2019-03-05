@@ -96,12 +96,9 @@ namespace open3d
         } Type;
     };
 
-    extern "C"
-    {
-        typedef Vector3<double>::Type Vector3d;
-        typedef Vector3<float>::Type Vector3f;
-        typedef Vector3<int>::Type Vector3i;
-    }
+    typedef Vector3<double>::Type Vector3d;
+    typedef Vector3<float>::Type Vector3f;
+    typedef Vector3<int>::Type Vector3i;
 
     // Display.
     std::ostream& operator <<(std::ostream& os, const Vector3f& v);
