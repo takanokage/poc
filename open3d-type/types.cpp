@@ -10,65 +10,73 @@ using namespace std;
 // ----------------------------------------------------------------------------
 // subscript operator: readwrite
 // ----------------------------------------------------------------------------
-float& open3d::Vector3f::operator [](const int& i)
+template<typename T>
+T& open3d::Vector3<T>::Type::operator [](const int& i)
 {
     // catch error in debug mode
     assert(0 <= i && i < 3);
 
-    return ((float*)this)[i];
+    return ((T*)this)[i];
 }
 
 // ----------------------------------------------------------------------------
 // subscript operator: readonly
 // ----------------------------------------------------------------------------
-const float& open3d::Vector3f::operator [](const int& i) const
+template<typename T>
+const T& open3d::Vector3<T>::Type::operator [](const int& i) const
 {
     // catch error in debug mode
     assert(0 <= i && i < 3);
 
-    return ((const float* const)this)[i];
+    return ((const T* const)this)[i];
 }
 
 // ----------------------------------------------------------------------------
 // casting operator: readwrite
 // ----------------------------------------------------------------------------
-open3d::Vector3f::operator float* const()
+template<typename T>
+open3d::Vector3<T>::Type::operator T* const()
 {
-    return reinterpret_cast<float*>(this);
+    return reinterpret_cast<T*>(this);
 }
 
 // ----------------------------------------------------------------------------
 // casting operator: readonly
 // ----------------------------------------------------------------------------
-open3d::Vector3f::operator const float* const()
+template<typename T>
+open3d::Vector3<T>::Type::operator const T* const()
 {
-    return reinterpret_cast<const float* const>(this);
+    return reinterpret_cast<const T* const>(this);
 }
 
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
-bool open3d::Vector3f::operator ==(const open3d::Vector3f& v) const
+template<typename T>
+bool open3d::Vector3<T>::Type::operator ==(const open3d::Vector3<T>::Type& v) const
 {
     return (x == v.x) && (y == v.y) && (z == v.z);
 }
 
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
-bool open3d::Vector3f::operator !=(const open3d::Vector3f& v) const
+template<typename T>
+bool open3d::Vector3<T>::Type::operator !=(const open3d::Vector3<T>::Type& v) const
 {
     return !(this->operator==(v));
 }
 
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
-bool open3d::Vector3f::operator <=(const open3d::Vector3f& v) const
+template<typename T>
+bool open3d::Vector3<T>::Type::operator <=(const open3d::Vector3<T>::Type& v) const
 {
     return (x <= v.x) && (y <= v.y) && (z <= v.z);
 }
 
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
-bool open3d::Vector3f::operator >=(const open3d::Vector3f& v) const
+template<typename T>
+bool open3d::Vector3<T>::Type::operator >=(const open3d::Vector3<T>::Type& v) const
 {
     return (x >= v.x) && (y >= v.y) && (z >= v.z);
 }
@@ -76,7 +84,8 @@ bool open3d::Vector3f::operator >=(const open3d::Vector3f& v) const
 // ----------------------------------------------------------------------------
 // addtion.
 // ----------------------------------------------------------------------------
-open3d::Vector3f open3d::Vector3f::operator +(const open3d::Vector3f& v) const
+template<typename T>
+typename open3d::Vector3<T>::Type open3d::Vector3<T>::Type::operator +(const open3d::Vector3<T>::Type& v) const
 {
     Vector3f output = {x + v.x, y + v.y, z + v.z };
 
@@ -86,7 +95,8 @@ open3d::Vector3f open3d::Vector3f::operator +(const open3d::Vector3f& v) const
 // ----------------------------------------------------------------------------
 // subtraction.
 // ----------------------------------------------------------------------------
-open3d::Vector3f open3d::Vector3f::operator -(const open3d::Vector3f& v) const
+template<typename T>
+typename open3d::Vector3<T>::Type open3d::Vector3<T>::Type::operator -(const open3d::Vector3<T>::Type& v) const
 {
     Vector3f output = {x - v.x, y - v.y, z - v.z };
 
@@ -96,7 +106,8 @@ open3d::Vector3f open3d::Vector3f::operator -(const open3d::Vector3f& v) const
 // ----------------------------------------------------------------------------
 // addtion assignment.
 // ----------------------------------------------------------------------------
-open3d::Vector3f& open3d::Vector3f::operator +=(const open3d::Vector3f& v)
+template<typename T>
+typename open3d::Vector3<T>::Type& open3d::Vector3<T>::Type::operator +=(const open3d::Vector3<T>::Type& v)
 {
     x += v.x;
     y += v.y;
@@ -108,7 +119,8 @@ open3d::Vector3f& open3d::Vector3f::operator +=(const open3d::Vector3f& v)
 // ----------------------------------------------------------------------------
 // subtraction assignment.
 // ----------------------------------------------------------------------------
-open3d::Vector3f& open3d::Vector3f::operator -=(const open3d::Vector3f& v)
+template<typename T>
+typename open3d::Vector3<T>::Type& open3d::Vector3<T>::Type::operator -=(const open3d::Vector3<T>::Type& v)
 {
     x -= v.x;
     y -= v.y;
@@ -120,7 +132,8 @@ open3d::Vector3f& open3d::Vector3f::operator -=(const open3d::Vector3f& v)
 // ----------------------------------------------------------------------------
 // addtion.
 // ----------------------------------------------------------------------------
-open3d::Vector3f open3d::Vector3f::operator +(const float& v) const
+template<typename T>
+typename open3d::Vector3<T>::Type open3d::Vector3<T>::Type::operator +(const T& v) const
 {
     Vector3f output = {x + v, y + v, z + v };
 
@@ -130,7 +143,8 @@ open3d::Vector3f open3d::Vector3f::operator +(const float& v) const
 // ----------------------------------------------------------------------------
 // subtraction.
 // ----------------------------------------------------------------------------
-open3d::Vector3f open3d::Vector3f::operator -(const float& v) const
+template<typename T>
+typename open3d::Vector3<T>::Type open3d::Vector3<T>::Type::operator -(const T& v) const
 {
     Vector3f output = {x - v, y - v, z - v };
 
@@ -140,7 +154,8 @@ open3d::Vector3f open3d::Vector3f::operator -(const float& v) const
 // ----------------------------------------------------------------------------
 // multiply with scalar.
 // ----------------------------------------------------------------------------
-open3d::Vector3f open3d::Vector3f::operator *(const float& v) const
+template<typename T>
+typename open3d::Vector3<T>::Type open3d::Vector3<T>::Type::operator *(const T& v) const
 {
     Vector3f output = {x * v, y * v, z * v };
 
@@ -150,7 +165,8 @@ open3d::Vector3f open3d::Vector3f::operator *(const float& v) const
 // ----------------------------------------------------------------------------
 // divide by scalar.
 // ----------------------------------------------------------------------------
-open3d::Vector3f open3d::Vector3f::operator /(const float& v) const
+template<typename T>
+typename open3d::Vector3<T>::Type open3d::Vector3<T>::Type::operator /(const T& v) const
 {
     Vector3f output = {x / v, y / v, z / v };
 
@@ -160,7 +176,8 @@ open3d::Vector3f open3d::Vector3f::operator /(const float& v) const
 // ----------------------------------------------------------------------------
 // addtion assignment.
 // ----------------------------------------------------------------------------
-open3d::Vector3f& open3d::Vector3f::operator +=(const float& v)
+template<typename T>
+typename open3d::Vector3<T>::Type& open3d::Vector3<T>::Type::operator +=(const T& v)
 {
     x += v;
     y += v;
@@ -172,7 +189,8 @@ open3d::Vector3f& open3d::Vector3f::operator +=(const float& v)
 // ----------------------------------------------------------------------------
 // subtraction assignment.
 // ----------------------------------------------------------------------------
-open3d::Vector3f& open3d::Vector3f::operator -=(const float& v)
+template<typename T>
+typename open3d::Vector3<T>::Type& open3d::Vector3<T>::Type::operator -=(const T& v)
 {
     x -= v;
     y -= v;
@@ -184,7 +202,8 @@ open3d::Vector3f& open3d::Vector3f::operator -=(const float& v)
 // ----------------------------------------------------------------------------
 // multiplication assignment.
 // ----------------------------------------------------------------------------
-open3d::Vector3f& open3d::Vector3f::operator *=(const float& v)
+template<typename T>
+typename open3d::Vector3<T>::Type& open3d::Vector3<T>::Type::operator *=(const T& v)
 {
     x *= v;
     y *= v;
@@ -196,7 +215,8 @@ open3d::Vector3f& open3d::Vector3f::operator *=(const float& v)
 // ----------------------------------------------------------------------------
 // division assignment.
 // ----------------------------------------------------------------------------
-open3d::Vector3f& open3d::Vector3f::operator /=(const float& v)
+template<typename T>
+typename open3d::Vector3<T>::Type& open3d::Vector3<T>::Type::operator /=(const T& v)
 {
     x /= v;
     y /= v;
@@ -208,7 +228,12 @@ open3d::Vector3f& open3d::Vector3f::operator /=(const float& v)
 // ----------------------------------------------------------------------------
 // Less than or equal X component.
 // ----------------------------------------------------------------------------
-bool open3d::LEX(const open3d::Vector3f& v0, const open3d::Vector3f& v1)
+// template<template<typename> typename V, typename T>
+// bool LEX(const typename V<T>::Type& v0, const typename V<T>::Type& v1)
+// template<template<typename> typename Vector3, typename T>
+// bool LEX(const typename open3d::Vector3<T>::Type& v0, const typename open3d::Vector3<T>::Type& v1)
+template<typename T>
+bool open3d::Vector3<T>::Type::LEX(const open3d::Vector3<T>::Type& v0, const open3d::Vector3<T>::Type& v1)
 {
     return v0.x <= v1.x;
 }
@@ -216,7 +241,8 @@ bool open3d::LEX(const open3d::Vector3f& v0, const open3d::Vector3f& v1)
 // ----------------------------------------------------------------------------
 // Greater than or equal X component.
 // ----------------------------------------------------------------------------
-bool open3d::GEX(const open3d::Vector3f& v0, const open3d::Vector3f& v1)
+template<typename T>
+bool open3d::Vector3<T>::Type::GEX(const typename open3d::Vector3<T>::Type& v0, const typename open3d::Vector3<T>::Type& v1)
 {
     return v0.x >= v1.x;
 }
@@ -224,7 +250,8 @@ bool open3d::GEX(const open3d::Vector3f& v0, const open3d::Vector3f& v1)
 // ----------------------------------------------------------------------------
 // Less than or equal Y component.
 // ----------------------------------------------------------------------------
-bool open3d::LEY(const open3d::Vector3f& v0, const open3d::Vector3f& v1)
+template<typename T>
+bool open3d::Vector3<T>::Type::LEY(const typename open3d::Vector3<T>::Type& v0, const typename open3d::Vector3<T>::Type& v1)
 {
     return v0.y <= v1.y;
 }
@@ -232,7 +259,8 @@ bool open3d::LEY(const open3d::Vector3f& v0, const open3d::Vector3f& v1)
 // ----------------------------------------------------------------------------
 // Greater than or equal Y component.
 // ----------------------------------------------------------------------------
-bool open3d::GEY(const open3d::Vector3f& v0, const open3d::Vector3f& v1)
+template<typename T>
+bool open3d::Vector3<T>::Type::GEY(const typename open3d::Vector3<T>::Type& v0, const typename open3d::Vector3<T>::Type& v1)
 {
     return v0.y >= v1.y;
 }
@@ -240,7 +268,8 @@ bool open3d::GEY(const open3d::Vector3f& v0, const open3d::Vector3f& v1)
 // ----------------------------------------------------------------------------
 // Less than or equal Z component.
 // ----------------------------------------------------------------------------
-bool open3d::LEZ(const open3d::Vector3f& v0, const open3d::Vector3f& v1)
+template<typename T>
+bool open3d::Vector3<T>::Type::LEZ(const typename open3d::Vector3<T>::Type& v0, const typename open3d::Vector3<T>::Type& v1)
 {
     return v0.z <= v1.z;
 }
@@ -248,13 +277,14 @@ bool open3d::LEZ(const open3d::Vector3f& v0, const open3d::Vector3f& v1)
 // ----------------------------------------------------------------------------
 // Greater than or equal Z component.
 // ----------------------------------------------------------------------------
-bool open3d::GEZ(const open3d::Vector3f& v0, const open3d::Vector3f& v1)
+template<typename T>
+bool open3d::Vector3<T>::Type::GEZ(const typename open3d::Vector3<T>::Type& v0, const typename open3d::Vector3<T>::Type& v1)
 {
     return v0.z >= v1.z;
 }
 
 // ----------------------------------------------------------------------------
-// Display an open3d::Vector3f.
+// Display an open3d::Vector3<T>::Type.
 // ----------------------------------------------------------------------------
 ostream& open3d::operator <<(ostream& os, const open3d::Vector3f& v)
 {
@@ -265,12 +295,40 @@ ostream& open3d::operator <<(ostream& os, const open3d::Vector3f& v)
     cout.precision(FLT_PRECISION);
     cout.setf(ios::fixed);
 
-    cout << setw(FLT_WIDTH) << v[0];
-    cout << setw(FLT_WIDTH) << v[1];
-    cout << setw(FLT_WIDTH) << v[2];
+    cout << setw(FLT_WIDTH) << v.x;
+    cout << setw(FLT_WIDTH) << v.y;
+    cout << setw(FLT_WIDTH) << v.z;
 
     // restore
     cout.flags(flags);
 
     cout.flush();
 }
+
+// Template instantiations: T <- float
+template float& open3d::Vector3f::operator [](const int& i);
+template const float& open3d::Vector3f::operator [](const int& i) const;
+template open3d::Vector3f::operator float* const();
+template open3d::Vector3f::operator const float* const();
+template bool open3d::Vector3f::operator ==(const open3d::Vector3f& v) const;
+template bool open3d::Vector3f::operator !=(const open3d::Vector3f& v) const;
+template bool open3d::Vector3f::operator <=(const open3d::Vector3f& v) const;
+template bool open3d::Vector3f::operator >=(const open3d::Vector3f& v) const;
+template open3d::Vector3f open3d::Vector3f::operator +(const open3d::Vector3f& v) const;
+template open3d::Vector3f open3d::Vector3f::operator -(const open3d::Vector3f& v) const;
+template open3d::Vector3f& open3d::Vector3f::operator +=(const open3d::Vector3f& v);
+template open3d::Vector3f& open3d::Vector3f::operator -=(const open3d::Vector3f& v);
+template open3d::Vector3f open3d::Vector3f::operator +(const float& v) const;
+template open3d::Vector3f open3d::Vector3f::operator -(const float& v) const;
+template open3d::Vector3f open3d::Vector3f::operator *(const float& v) const;
+template open3d::Vector3f open3d::Vector3f::operator /(const float& v) const;
+template open3d::Vector3f& open3d::Vector3f::operator +=(const float& v);
+template open3d::Vector3f& open3d::Vector3f::operator -=(const float& v);
+template open3d::Vector3f& open3d::Vector3f::operator *=(const float& v);
+template open3d::Vector3f& open3d::Vector3f::operator /=(const float& v);
+template bool open3d::Vector3f::LEX(const open3d::Vector3f& v0, const open3d::Vector3f& v1);
+template bool open3d::Vector3f::GEX(const open3d::Vector3f& v0, const open3d::Vector3f& v1);
+template bool open3d::Vector3f::LEY(const open3d::Vector3f& v0, const open3d::Vector3f& v1);
+template bool open3d::Vector3f::GEY(const open3d::Vector3f& v0, const open3d::Vector3f& v1);
+template bool open3d::Vector3f::LEZ(const open3d::Vector3f& v0, const open3d::Vector3f& v1);
+template bool open3d::Vector3f::GEZ(const open3d::Vector3f& v0, const open3d::Vector3f& v1);

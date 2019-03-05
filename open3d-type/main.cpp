@@ -12,12 +12,6 @@ using namespace open3d::DIM;
 
 int main(int argc, char **argv)
 {
-    int width = 4;
-    int precision = 1;
-
-    cout << setprecision(precision);
-    cout << fixed;
-
     open3d::Vector3f v;
 
     cout << "open3d::Vector3f v" << endl;
@@ -69,14 +63,11 @@ int main(int argc, char **argv)
     open3d::Vector3f v3 = { 5.0f, 5.1f, 5.2f };
     float* vfloat = (float*)v3;
 
-    cout << vfloat;
-    cout << endl;
-
     vfloat[0] = 6.0f;
     vfloat[1] = 6.1f;
     vfloat[2] = 6.2f;
 
-    cout << vfloat << endl;
+    cout << v3 << endl;
     cout << endl;
 
     cout << v3 << endl;
@@ -147,19 +138,19 @@ int main(int argc, char **argv)
     cout << endl;
 
     cout << "sort ascending on X:" << endl;
-    sort(points.begin(), points.end(), open3d::LEX);
+    sort(points.begin(), points.end(), open3d::Vector3f::LEX);
     for (int i = 0; i < 10; i++)
         cout << points[i] << endl;
     cout << endl;
 
     cout << "sort ascending on Y:" << endl;
-    sort(points.begin(), points.end(), open3d::LEY);
+    sort(points.begin(), points.end(), open3d::Vector3f::LEY);
     for (int i = 0; i < 10; i++)
         cout << points[i] << endl;
     cout << endl;
 
     cout << "sort ascending on Z:" << endl;
-    sort(points.begin(), points.end(), open3d::LEZ);
+    sort(points.begin(), points.end(), open3d::Vector3f::LEZ);
     for (int i = 0; i < 10; i++)
         cout << points[i] << endl;
     cout << endl;
