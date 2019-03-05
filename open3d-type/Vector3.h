@@ -5,6 +5,8 @@
 
 #include <iostream>
 
+typedef unsigned int uint;
+
 namespace open3d
 {
     static const float FLT_THRESHOLD = -1e3;
@@ -25,9 +27,9 @@ namespace open3d
             struct { T r, g, b; };
 
             // subscript operator: readwrite
-            T& operator [](const int& i);
+            T& operator [](const uint& i);
             // subscript operator: readonly
-            const T& operator [](const int& i) const;
+            const T& operator [](const uint& i) const;
 
             // casting operator: readwrite
             explicit operator T* const();

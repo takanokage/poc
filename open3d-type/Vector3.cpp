@@ -11,10 +11,10 @@ using namespace std;
 // subscript operator: readwrite
 // ----------------------------------------------------------------------------
 template<typename T>
-T& open3d::Vector3<T>::Type::operator [](const int& i)
+T& open3d::Vector3<T>::Type::operator [](const uint& i)
 {
     // catch error in debug mode
-    assert(0 <= i && i < 3);
+    assert(i < 3);
 
     return ((T*)this)[i];
 }
@@ -23,10 +23,10 @@ T& open3d::Vector3<T>::Type::operator [](const int& i)
 // subscript operator: readonly
 // ----------------------------------------------------------------------------
 template<typename T>
-const T& open3d::Vector3<T>::Type::operator [](const int& i) const
+const T& open3d::Vector3<T>::Type::operator [](const uint& i) const
 {
     // catch error in debug mode
-    assert(0 <= i && i < 3);
+    assert(i < 3);
 
     return ((const T* const)this)[i];
 }
