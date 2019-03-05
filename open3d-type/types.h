@@ -5,8 +5,6 @@
 
 #include <iostream>
 
-#include "Vector3.h"
-
 namespace open3d
 {
     namespace DIM
