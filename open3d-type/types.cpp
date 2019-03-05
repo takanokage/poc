@@ -7,6 +7,12 @@
 #include <iomanip>
 using namespace std;
 
+template<typename T, int R>
+using Vector = typename open3d::Matrix<T, R, 1>;
+
+template<typename T>
+using Vector3 = Vector<T, 3>;
+
 // ----------------------------------------------------------------------------
 // subscript operator: readwrite
 // ----------------------------------------------------------------------------

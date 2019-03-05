@@ -22,6 +22,18 @@ namespace open3d
     static const float FLT_PRECISION = 6;
     static const float FLT_WIDTH = 14;
 
+    template<typename T, int R, int C>
+    struct Matrix
+    {
+        typedef union alignas(4 * sizeof(T)) _Type
+        {
+            T s[R][C];
+        } Type;
+    };
+
+    template<typename T, int R>
+    using Vector = Matrix<T, R, 1>;
+
     template<typename T>
     struct Vector3
     {
