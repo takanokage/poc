@@ -286,6 +286,24 @@ bool open3d::Vector3<T>::Type::GEZ(const open3d::Vector3<T>::Type& v0, const ope
 // ----------------------------------------------------------------------------
 // Display an open3d::Vector3<T>::Type.
 // ----------------------------------------------------------------------------
+ostream& open3d::operator <<(ostream& os, const open3d::Vector3d& v)
+{
+    // save
+    ios_base::fmtflags flags = cout.flags();
+
+    // set new precision
+    cout.precision(DBL_PRECISION);
+    cout.setf(ios::fixed);
+
+    cout << setw(DBL_WIDTH) << v.x;
+    cout << setw(DBL_WIDTH) << v.y;
+    cout << setw(DBL_WIDTH) << v.z;
+
+    // restore
+    cout.flags(flags);
+
+    cout.flush();
+}
 ostream& open3d::operator <<(ostream& os, const open3d::Vector3f& v)
 {
     // save
@@ -301,6 +319,14 @@ ostream& open3d::operator <<(ostream& os, const open3d::Vector3f& v)
 
     // restore
     cout.flags(flags);
+
+    cout.flush();
+}
+ostream& open3d::operator <<(ostream& os, const open3d::Vector3i& v)
+{
+    cout << setw(FLT_WIDTH) << v.x;
+    cout << setw(FLT_WIDTH) << v.y;
+    cout << setw(FLT_WIDTH) << v.z;
 
     cout.flush();
 }

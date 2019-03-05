@@ -101,5 +101,7 @@ namespace open3d
     typedef Vector3<int>::Type Vector3i;
 
     // Display.
+    std::ostream& operator <<(std::ostream& os, const Vector3d& v);
     std::ostream& operator <<(std::ostream& os, const Vector3f& v);
+    std::ostream& operator <<(std::ostream& os, const Vector3i& v);
 }
