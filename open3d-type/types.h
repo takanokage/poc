@@ -18,9 +18,13 @@ namespace open3d
         } Type;
     };
 
-    static const float FLT_THRESHOLD = 1e3;
-    static const float FLT_PRECISION = 6;
-    static const float FLT_WIDTH = 14;
+    static const float FLT_THRESHOLD = -1e3;
+    static const float FLT_PRECISION = 3;
+    static const float FLT_WIDTH = 8;
+
+    static const float DBL_THRESHOLD = -1e6;
+    static const float DBL_PRECISION = 6;
+    static const float DBL_WIDTH = 12;
 
     template<typename T>
     struct Vector3
@@ -94,7 +98,9 @@ namespace open3d
 
     extern "C"
     {
+        typedef Vector3<double>::Type Vector3d;
         typedef Vector3<float>::Type Vector3f;
+        typedef Vector3<int>::Type Vector3i;
     }
 
     // Display.

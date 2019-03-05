@@ -115,7 +115,6 @@ int main(int argc, char **argv)
         ((float*)a)[i % 3] = ((float*)a)[rand() % 3];
     Performance::Stop();
     cout << "execution time: " << Performance::Duration() << " ms" << endl;
-    cout << a << endl;
     cout << endl;
 
     cout << "const operator== test" << endl;

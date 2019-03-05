@@ -87,7 +87,7 @@ bool open3d::Vector3<T>::Type::operator >=(const open3d::Vector3<T>::Type& v) co
 template<typename T>
 typename open3d::Vector3<T>::Type open3d::Vector3<T>::Type::operator +(const open3d::Vector3<T>::Type& v) const
 {
-    Vector3f output = {x + v.x, y + v.y, z + v.z };
+    Vector3<T>::Type output = {x + v.x, y + v.y, z + v.z };
 
     return output;
 }
@@ -98,7 +98,7 @@ typename open3d::Vector3<T>::Type open3d::Vector3<T>::Type::operator +(const ope
 template<typename T>
 typename open3d::Vector3<T>::Type open3d::Vector3<T>::Type::operator -(const open3d::Vector3<T>::Type& v) const
 {
-    Vector3f output = {x - v.x, y - v.y, z - v.z };
+    Vector3<T>::Type output = {x - v.x, y - v.y, z - v.z };
 
     return output;
 }
@@ -135,7 +135,7 @@ typename open3d::Vector3<T>::Type& open3d::Vector3<T>::Type::operator -=(const o
 template<typename T>
 typename open3d::Vector3<T>::Type open3d::Vector3<T>::Type::operator +(const T& v) const
 {
-    Vector3f output = {x + v, y + v, z + v };
+    Vector3<T>::Type output = {x + v, y + v, z + v };
 
     return output;
 }
@@ -146,7 +146,7 @@ typename open3d::Vector3<T>::Type open3d::Vector3<T>::Type::operator +(const T& 
 template<typename T>
 typename open3d::Vector3<T>::Type open3d::Vector3<T>::Type::operator -(const T& v) const
 {
-    Vector3f output = {x - v, y - v, z - v };
+    Vector3<T>::Type output = {x - v, y - v, z - v };
 
     return output;
 }
@@ -157,7 +157,7 @@ typename open3d::Vector3<T>::Type open3d::Vector3<T>::Type::operator -(const T& 
 template<typename T>
 typename open3d::Vector3<T>::Type open3d::Vector3<T>::Type::operator *(const T& v) const
 {
-    Vector3f output = {x * v, y * v, z * v };
+    Vector3<T>::Type output = {x * v, y * v, z * v };
 
     return output;
 }
@@ -168,7 +168,7 @@ typename open3d::Vector3<T>::Type open3d::Vector3<T>::Type::operator *(const T& 
 template<typename T>
 typename open3d::Vector3<T>::Type open3d::Vector3<T>::Type::operator /(const T& v) const
 {
-    Vector3f output = {x / v, y / v, z / v };
+    Vector3<T>::Type output = {x / v, y / v, z / v };
 
     return output;
 }
@@ -305,5 +305,7 @@ ostream& open3d::operator <<(ostream& os, const open3d::Vector3f& v)
     cout.flush();
 }
 
-// Template instantiations: T <- float
+// Template instantiations:
+template class open3d::Vector3<double>;
 template class open3d::Vector3<float>;
+template class open3d::Vector3<int>;
