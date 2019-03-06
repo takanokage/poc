@@ -28,4 +28,6 @@ namespace open3d
 
     template<typename T>
     using Vector3 = typename Matrix<T, 3, 1>::Type;
+
+    typedef Matrix<float, 3, 3>::Type Matrix3f;
 }
