@@ -30,13 +30,13 @@ void TestMatrix()
 
     cout << "[][] access for Matrix<float, 3, 3> type:" << endl;
     cout << setw(width) << m[0][0];
-    cout << setw(width) << m[1][0];
-    cout << setw(width) << m[2][0] << endl;
     cout << setw(width) << m[0][1];
+    cout << setw(width) << m[0][2] << endl;
+    cout << setw(width) << m[1][0];
     cout << setw(width) << m[1][1];
-    cout << setw(width) << m[2][1] << endl;
-    cout << setw(width) << m[0][2];
-    cout << setw(width) << m[1][2];
+    cout << setw(width) << m[1][2] << endl;
+    cout << setw(width) << m[2][0];
+    cout << setw(width) << m[2][1];
     cout << setw(width) << m[2][2] << endl;
     cout << endl;
 
