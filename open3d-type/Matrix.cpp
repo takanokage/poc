@@ -7,11 +7,15 @@
 #include <iomanip>
 using namespace std;
 
+// *****************************************************************************
+// Matrix<T, ROWS, COLS>
+// *****************************************************************************
+
 // ----------------------------------------------------------------------------
 // subscript operator: readwrite
 // ----------------------------------------------------------------------------
-template<typename T, uint R, uint C>
-T* open3d::Matrix<T, R, C>::Type::operator [](const uint& i)
+template<typename T, uint ROWS, uint COLS>
+T* open3d::Matrix<T, ROWS, COLS>::Type::operator [](const uint& i)
 {
     // catch error in debug mode
     assert(0 <= i && i < 3);
@@ -22,8 +26,8 @@ T* open3d::Matrix<T, R, C>::Type::operator [](const uint& i)
 // ----------------------------------------------------------------------------
 // subscript operator: readonly
 // ----------------------------------------------------------------------------
-template<typename T, uint R, uint C>
-const T* open3d::Matrix<T, R, C>::Type::operator [](const uint& i) const
+template<typename T, uint ROWS, uint COLS>
+const T* open3d::Matrix<T, ROWS, COLS>::Type::operator [](const uint& i) const
 {
     // catch error in debug mode
     assert(0 <= i && i < 3);
@@ -32,10 +36,222 @@ const T* open3d::Matrix<T, R, C>::Type::operator [](const uint& i) const
 }
 
 // ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+template<typename T, uint ROWS, uint COLS>
+bool open3d::Matrix<T, ROWS, COLS>::Type::operator ==(const open3d::Matrix<T, ROWS, COLS>::Type& m)
+{
+    for (uint r = 0; r < ROWS; r++)
+        for (uint c = 0; c < COLS; c++)
+            if ((*this)[r][c] != m[r][c])
+                return false;
+
+    return true;
+}
+
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+template<typename T, uint ROWS, uint COLS>
+bool open3d::Matrix<T, ROWS, COLS>::Type::operator !=(const open3d::Matrix<T, ROWS, COLS>::Type& m)
+{
+    return !(*this == m);
+}
+
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+template<typename T, uint ROWS, uint COLS>
+bool open3d::Matrix<T, ROWS, COLS>::Type::operator <=(const open3d::Matrix<T, ROWS, COLS>::Type& m)
+{
+    for (uint r = 0; r < ROWS; r++)
+        for (uint c = 0; c < COLS; c++)
+            if ((*this)[r][c] > m[r][c])
+                return false;
+
+    return true;
+}
+
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+template<typename T, uint ROWS, uint COLS>
+bool open3d::Matrix<T, ROWS, COLS>::Type::operator >=(const open3d::Matrix<T, ROWS, COLS>::Type& m)
+{
+    for (uint r = 0; r < ROWS; r++)
+        if ((*this)[r] < m[r])
+            return false;
+
+    return true;
+}
+
+// ----------------------------------------------------------------------------
+// addtion.
+// ----------------------------------------------------------------------------
+template<typename T, uint ROWS, uint COLS>
+typename open3d::Matrix<T, ROWS, COLS>::Type open3d::Matrix<T, ROWS, COLS>::Type::operator +(const open3d::Matrix<T, ROWS, COLS>::Type& m) const
+{
+    Matrix<T, ROWS, COLS>::Type output;
+    for (uint r = 0; r < ROWS; r++)
+        for (uint c = 0; c < COLS; c++)
+            output[r][c] = (*this)[r][c] + m[r][c];
+
+    return output;
+}
+
+// ----------------------------------------------------------------------------
+// subtraction.
+// ----------------------------------------------------------------------------
+template<typename T, uint ROWS, uint COLS>
+typename open3d::Matrix<T, ROWS, COLS>::Type open3d::Matrix<T, ROWS, COLS>::Type::operator -(const open3d::Matrix<T, ROWS, COLS>::Type& m) const
+{
+    Matrix<T, ROWS, COLS>::Type output;
+    for (uint r = 0; r < ROWS; r++)
+        for (uint c = 0; c < COLS; c++)
+            output[r][c] = (*this)[r][c] - m[r][c];
+
+    return output;
+}
+
+// ----------------------------------------------------------------------------
+// addtion assignment.
+// ----------------------------------------------------------------------------
+template<typename T, uint ROWS, uint COLS>
+typename open3d::Matrix<T, ROWS, COLS>::Type& open3d::Matrix<T, ROWS, COLS>::Type::operator +=(const open3d::Matrix<T, ROWS, COLS>::Type& m)
+{
+    for (uint r = 0; r < ROWS; r++)
+        for (uint c = 0; c < COLS; c++)
+            (*this)[r][c] += m[r][c];
+
+    return *this;
+}
+
+// ----------------------------------------------------------------------------
+// subtraction assignment.
+// ----------------------------------------------------------------------------
+template<typename T, uint ROWS, uint COLS>
+typename open3d::Matrix<T, ROWS, COLS>::Type& open3d::Matrix<T, ROWS, COLS>::Type::operator -=(const open3d::Matrix<T, ROWS, COLS>::Type& m)
+{
+    for (uint r = 0; r < ROWS; r++)
+        for (uint c = 0; c < COLS; c++)
+            (*this)[r][c] -= m[r][c];
+
+    return *this;
+}
+
+// ----------------------------------------------------------------------------
+// addtion.
+// ----------------------------------------------------------------------------
+template<typename T, uint ROWS, uint COLS>
+typename open3d::Matrix<T, ROWS, COLS>::Type open3d::Matrix<T, ROWS, COLS>::Type::operator +(const T& t) const
+{
+    Matrix<T, ROWS, COLS>::Type output;
+    for (uint r = 0; r < ROWS; r++)
+        for (uint c = 0; c < COLS; c++)
+            output[r][c] = (*this)[r][c] + t;
+
+    return output;
+}
+
+// ----------------------------------------------------------------------------
+// subtraction.
+// ----------------------------------------------------------------------------
+template<typename T, uint ROWS, uint COLS>
+typename open3d::Matrix<T, ROWS, COLS>::Type open3d::Matrix<T, ROWS, COLS>::Type::operator -(const T& t) const
+{
+    Matrix<T, ROWS, COLS>::Type output;
+    for (uint r = 0; r < ROWS; r++)
+        for (uint c = 0; c < COLS; c++)
+            output[r][c] = (*this)[r][c] - t;
+
+    return output;
+}
+
+// ----------------------------------------------------------------------------
+// multiply with scalar.
+// ----------------------------------------------------------------------------
+template<typename T, uint ROWS, uint COLS>
+typename open3d::Matrix<T, ROWS, COLS>::Type open3d::Matrix<T, ROWS, COLS>::Type::operator *(const T& t) const
+{
+    Matrix<T, ROWS, COLS>::Type output;
+    for (uint r = 0; r < ROWS; r++)
+        for (uint c = 0; c < COLS; c++)
+            output[r][c] = (*this)[r][c] * t;
+
+    return output;
+}
+
+// ----------------------------------------------------------------------------
+// divide by scalar.
+// ----------------------------------------------------------------------------
+template<typename T, uint ROWS, uint COLS>
+typename open3d::Matrix<T, ROWS, COLS>::Type open3d::Matrix<T, ROWS, COLS>::Type::operator /(const T& t) const
+{
+    Matrix<T, ROWS, COLS>::Type output;
+    for (uint r = 0; r < ROWS; r++)
+        for (uint c = 0; c < COLS; c++)
+            output[r][c] = (*this)[r][c] / t;
+
+    return output;
+}
+
+// ----------------------------------------------------------------------------
+// addtion assignment.
+// ----------------------------------------------------------------------------
+template<typename T, uint ROWS, uint COLS>
+typename open3d::Matrix<T, ROWS, COLS>::Type& open3d::Matrix<T, ROWS, COLS>::Type::operator +=(const T& t)
+{
+    for (uint r = 0; r < ROWS; r++)
+        for (uint c = 0; c < COLS; c++)
+            (*this)[r][c] += t;
+
+    return *this;
+}
+
+// ----------------------------------------------------------------------------
+// subtraction assignment.
+// ----------------------------------------------------------------------------
+template<typename T, uint ROWS, uint COLS>
+typename open3d::Matrix<T, ROWS, COLS>::Type& open3d::Matrix<T, ROWS, COLS>::Type::operator -=(const T& t)
+{
+    for (uint r = 0; r < ROWS; r++)
+        for (uint c = 0; c < COLS; c++)
+            (*this)[r][c] -= t;
+
+    return *this;
+}
+
+// ----------------------------------------------------------------------------
+// multiplication assignment.
+// ----------------------------------------------------------------------------
+template<typename T, uint ROWS, uint COLS>
+typename open3d::Matrix<T, ROWS, COLS>::Type& open3d::Matrix<T, ROWS, COLS>::Type::operator *=(const T& t)
+{
+    for (uint r = 0; r < ROWS; r++)
+        for (uint c = 0; c < COLS; c++)
+            (*this)[r][c] *= t;
+
+    return *this;
+}
+
+// ----------------------------------------------------------------------------
+// division assignment.
+// ----------------------------------------------------------------------------
+template<typename T, uint ROWS, uint COLS>
+typename open3d::Matrix<T, ROWS, COLS>::Type& open3d::Matrix<T, ROWS, COLS>::Type::operator /=(const T& t)
+{
+    for (uint r = 0; r < ROWS; r++)
+        for (uint c = 0; c < COLS; c++)
+            (*this)[r][c] /= t;
+
+    return *this;
+}
+
+// *****************************************************************************
+// Vector<T, COLS>
+// *****************************************************************************
+
+// ----------------------------------------------------------------------------
 // subscript operator: readwrite
 // ----------------------------------------------------------------------------
-template<typename T, uint R>
-T& open3d::Matrix<T, R, 1>::Type::operator [](const uint& i)
+template<typename T, uint COLS>
+T& open3d::Matrix<T, 1, COLS>::Type::operator [](const uint& i)
 {
     // catch error in debug mode
     assert(0 <= i && i < 3);
@@ -46,8 +262,8 @@ T& open3d::Matrix<T, R, 1>::Type::operator [](const uint& i)
 // ----------------------------------------------------------------------------
 // subscript operator: readonly
 // ----------------------------------------------------------------------------
-template<typename T, uint R>
-const T& open3d::Matrix<T, R, 1>::Type::operator [](const uint& i) const
+template<typename T, uint COLS>
+const T& open3d::Matrix<T, 1, COLS>::Type::operator [](const uint& i) const
 {
     // catch error in debug mode
     assert(0 <= i && i < 3);
@@ -57,45 +273,11 @@ const T& open3d::Matrix<T, R, 1>::Type::operator [](const uint& i) const
 
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
-template<typename T, uint R, uint C>
-bool open3d::Matrix<T, R, C>::Type::operator ==(const open3d::Matrix<T, R, C>::Type& m)
+template<typename T, uint COLS>
+bool open3d::Matrix<T, 1, COLS>::Type::operator ==(const open3d::Matrix<T, 1, COLS>::Type& v)
 {
-    for (uint r = 0; r < R; r++)
-        for (uint c = 0; c < C; c++)
-            if ((*this)[r][c] != m[r][c])
-                return false;
-
-    return true;
-}
-
-// ----------------------------------------------------------------------------
-// ----------------------------------------------------------------------------
-template<typename T, uint R, uint C>
-bool open3d::Matrix<T, R, C>::Type::operator !=(const open3d::Matrix<T, R, C>::Type& m)
-{
-    return !(*this == m);
-}
-
-// ----------------------------------------------------------------------------
-// ----------------------------------------------------------------------------
-template<typename T, uint R, uint C>
-bool open3d::Matrix<T, R, C>::Type::operator <=(const open3d::Matrix<T, R, C>::Type& m)
-{
-    for (uint r = 0; r < R; r++)
-        for (uint c = 0; c < C; c++)
-            if ((*this)[r][c] > m[r][c])
-                return false;
-
-    return true;
-}
-
-// ----------------------------------------------------------------------------
-// ----------------------------------------------------------------------------
-template<typename T, uint R, uint C>
-bool open3d::Matrix<T, R, C>::Type::operator >=(const open3d::Matrix<T, R, C>::Type& m)
-{
-    for (uint r = 0; r < R; r++)
-        if ((*this)[r] < m[r])
+    for (uint c = 0; c < COLS; c++)
+        if ((*this)[c] != v[c])
             return false;
 
     return true;
@@ -103,11 +285,19 @@ bool open3d::Matrix<T, R, C>::Type::operator >=(const open3d::Matrix<T, R, C>::T
 
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
-template<typename T, uint R>
-bool open3d::Matrix<T, R, 1>::Type::operator ==(const open3d::Matrix<T, R, 1>::Type& m)
+template<typename T, uint COLS>
+bool open3d::Matrix<T, 1, COLS>::Type::operator !=(const open3d::Matrix<T, 1, COLS>::Type& v)
 {
-    for (uint r = 0; r < R; r++)
-        if ((*this)[r] != m[r])
+    return !(*this == v);
+}
+
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+template<typename T, uint COLS>
+bool open3d::Matrix<T, 1, COLS>::Type::operator <=(const open3d::Matrix<T, 1, COLS>::Type& v)
+{
+    for (uint c = 0; c < COLS; c++)
+        if ((*this)[c] > v[c])
             return false;
 
     return true;
@@ -115,36 +305,168 @@ bool open3d::Matrix<T, R, 1>::Type::operator ==(const open3d::Matrix<T, R, 1>::T
 
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
-template<typename T, uint R>
-bool open3d::Matrix<T, R, 1>::Type::operator !=(const open3d::Matrix<T, R, 1>::Type& m)
+template<typename T, uint COLS>
+bool open3d::Matrix<T, 1, COLS>::Type::operator >=(const open3d::Matrix<T, 1, COLS>::Type& v)
 {
-    return !(*this == m);
-}
-
-// ----------------------------------------------------------------------------
-// ----------------------------------------------------------------------------
-template<typename T, uint R>
-bool open3d::Matrix<T, R, 1>::Type::operator <=(const open3d::Matrix<T, R, 1>::Type& m)
-{
-    for (uint r = 0; r < R; r++)
-        if ((*this)[r] > m[r])
+    for (uint c = 0; c < COLS; c++)
+        if ((*this)[c] < v[c])
             return false;
 
     return true;
 }
 
 // ----------------------------------------------------------------------------
+// addtion.
 // ----------------------------------------------------------------------------
-template<typename T, uint R>
-bool open3d::Matrix<T, R, 1>::Type::operator >=(const open3d::Matrix<T, R, 1>::Type& m)
+template<typename T, uint COLS>
+typename open3d::Matrix<T, 1, COLS>::Type open3d::Matrix<T, 1, COLS>::Type::operator +(const open3d::Matrix<T, 1, COLS>::Type& m) const
 {
-    for (uint r = 0; r < R; r++)
-        if ((*this)[r] < m[r])
-            return false;
+    Matrix<T, 1, COLS>::Type output;
+    for (uint c = 0; c < COLS; c++)
+        output[c] = (*this)[c] + m[c];
 
-    return true;
+    return output;
 }
 
+// ----------------------------------------------------------------------------
+// subtraction.
+// ----------------------------------------------------------------------------
+template<typename T, uint COLS>
+typename open3d::Matrix<T, 1, COLS>::Type open3d::Matrix<T, 1, COLS>::Type::operator -(const open3d::Matrix<T, 1, COLS>::Type& m) const
+{
+    Matrix<T, 1, COLS>::Type output;
+    for (uint c = 0; c < COLS; c++)
+        output[c] = (*this)[c] - m[c];
+
+    return output;
+}
+
+// ----------------------------------------------------------------------------
+// addtion assignment.
+// ----------------------------------------------------------------------------
+template<typename T, uint COLS>
+typename open3d::Matrix<T, 1, COLS>::Type& open3d::Matrix<T, 1, COLS>::Type::operator +=(const open3d::Matrix<T, 1, COLS>::Type& m)
+{
+    for (uint c = 0; c < COLS; c++)
+        (*this)[c] += m[c];
+
+    return *this;
+}
+
+// ----------------------------------------------------------------------------
+// subtraction assignment.
+// ----------------------------------------------------------------------------
+template<typename T, uint COLS>
+typename open3d::Matrix<T, 1, COLS>::Type& open3d::Matrix<T, 1, COLS>::Type::operator -=(const open3d::Matrix<T, 1, COLS>::Type& m)
+{
+    for (uint c = 0; c < COLS; c++)
+        (*this)[c] -= m[c];
+
+    return *this;
+}
+
+// ----------------------------------------------------------------------------
+// addtion.
+// ----------------------------------------------------------------------------
+template<typename T, uint COLS>
+typename open3d::Matrix<T, 1, COLS>::Type open3d::Matrix<T, 1, COLS>::Type::operator +(const T& t) const
+{
+    Matrix<T, 1, COLS>::Type output;
+    for (uint c = 0; c < COLS; c++)
+        output[c] = (*this)[c] + t;
+
+    return output;
+}
+
+// ----------------------------------------------------------------------------
+// subtraction.
+// ----------------------------------------------------------------------------
+template<typename T, uint COLS>
+typename open3d::Matrix<T, 1, COLS>::Type open3d::Matrix<T, 1, COLS>::Type::operator -(const T& t) const
+{
+    Matrix<T, 1, COLS>::Type output;
+    for (uint c = 0; c < COLS; c++)
+        output[c] = (*this)[c] - t;
+
+    return output;
+}
+
+// ----------------------------------------------------------------------------
+// multiply with scalar.
+// ----------------------------------------------------------------------------
+template<typename T, uint COLS>
+typename open3d::Matrix<T, 1, COLS>::Type open3d::Matrix<T, 1, COLS>::Type::operator *(const T& t) const
+{
+    Matrix<T, 1, COLS>::Type output;
+    for (uint c = 0; c < COLS; c++)
+        output[c] = (*this)[c] * t;
+
+    return output;
+}
+
+// ----------------------------------------------------------------------------
+// divide by scalar.
+// ----------------------------------------------------------------------------
+template<typename T, uint COLS>
+typename open3d::Matrix<T, 1, COLS>::Type open3d::Matrix<T, 1, COLS>::Type::operator /(const T& t) const
+{
+    Matrix<T, 1, COLS>::Type output;
+    for (uint c = 0; c < COLS; c++)
+        output[c] = (*this)[c] / t;
+
+    return output;
+}
+
+// ----------------------------------------------------------------------------
+// addtion assignment.
+// ----------------------------------------------------------------------------
+template<typename T, uint COLS>
+typename open3d::Matrix<T, 1, COLS>::Type& open3d::Matrix<T, 1, COLS>::Type::operator +=(const T& t)
+{
+    for (uint c = 0; c < COLS; c++)
+        (*this)[c] += t;
+
+    return *this;
+}
+
+// ----------------------------------------------------------------------------
+// subtraction assignment.
+// ----------------------------------------------------------------------------
+template<typename T, uint COLS>
+typename open3d::Matrix<T, 1, COLS>::Type& open3d::Matrix<T, 1, COLS>::Type::operator -=(const T& t)
+{
+    for (uint c = 0; c < COLS; c++)
+        (*this)[c] -= t;
+
+    return *this;
+}
+
+// ----------------------------------------------------------------------------
+// multiplication assignment.
+// ----------------------------------------------------------------------------
+template<typename T, uint COLS>
+typename open3d::Matrix<T, 1, COLS>::Type& open3d::Matrix<T, 1, COLS>::Type::operator *=(const T& t)
+{
+    for (uint c = 0; c < COLS; c++)
+        (*this)[c] *= t;
+
+    return *this;
+}
+
+// ----------------------------------------------------------------------------
+// division assignment.
+// ----------------------------------------------------------------------------
+template<typename T, uint COLS>
+typename open3d::Matrix<T, 1, COLS>::Type& open3d::Matrix<T, 1, COLS>::Type::operator /=(const T& t)
+{
+    for (uint c = 0; c < COLS; c++)
+        (*this)[c] /= t;
+
+    return *this;
+}
+
+// *****************************************************************************
 // Template instantiations:
+// *****************************************************************************
 template class open3d::Matrix<float, 3, 3>;
-template class open3d::Matrix<float, 3, 1>;
+template class open3d::Matrix<float, 1, 3>;
