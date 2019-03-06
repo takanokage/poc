@@ -110,5 +110,5 @@ namespace open3d
     // 2D 3x3 tensor
     typedef Matrix<float, 3, 3>::Type Matrix3f;
     // 1D 1x3 tensor
-    typedef Matrix<float, 1, 3>::Type Vector3f;
+    typedef Vector<float, 3> Vector3f;
 }
