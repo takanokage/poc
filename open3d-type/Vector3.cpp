@@ -52,7 +52,8 @@ open3d::Vector3<T>::Type::operator const T* const()
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
 template<typename T>
-bool open3d::Vector3<T>::Type::operator ==(const open3d::Vector3<T>::Type& v) const
+bool open3d::Vector3<T>::Type::operator ==(
+    const open3d::Vector3<T>::Type& v) const
 {
     return (x == v.x) && (y == v.y) && (z == v.z);
 }
@@ -60,7 +61,8 @@ bool open3d::Vector3<T>::Type::operator ==(const open3d::Vector3<T>::Type& v) co
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
 template<typename T>
-bool open3d::Vector3<T>::Type::operator !=(const open3d::Vector3<T>::Type& v) const
+bool open3d::Vector3<T>::Type::operator !=(
+    const open3d::Vector3<T>::Type& v) const
 {
     return !(this->operator==(v));
 }
@@ -68,7 +70,8 @@ bool open3d::Vector3<T>::Type::operator !=(const open3d::Vector3<T>::Type& v) co
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
 template<typename T>
-bool open3d::Vector3<T>::Type::operator <=(const open3d::Vector3<T>::Type& v) const
+bool open3d::Vector3<T>::Type::operator <=(
+    const open3d::Vector3<T>::Type& v) const
 {
     return (x <= v.x) && (y <= v.y) && (z <= v.z);
 }
@@ -76,7 +79,8 @@ bool open3d::Vector3<T>::Type::operator <=(const open3d::Vector3<T>::Type& v) co
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
 template<typename T>
-bool open3d::Vector3<T>::Type::operator >=(const open3d::Vector3<T>::Type& v) const
+bool open3d::Vector3<T>::Type::operator >=(
+    const open3d::Vector3<T>::Type& v) const
 {
     return (x >= v.x) && (y >= v.y) && (z >= v.z);
 }
@@ -85,7 +89,8 @@ bool open3d::Vector3<T>::Type::operator >=(const open3d::Vector3<T>::Type& v) co
 // addtion.
 // ----------------------------------------------------------------------------
 template<typename T>
-typename open3d::Vector3<T>::Type open3d::Vector3<T>::Type::operator +(const open3d::Vector3<T>::Type& v) const
+typename open3d::Vector3<T>::Type open3d::Vector3<T>::Type::operator +(
+    const open3d::Vector3<T>::Type& v) const
 {
     Vector3<T>::Type output = {x + v.x, y + v.y, z + v.z };
 
@@ -96,7 +101,8 @@ typename open3d::Vector3<T>::Type open3d::Vector3<T>::Type::operator +(const ope
 // subtraction.
 // ----------------------------------------------------------------------------
 template<typename T>
-typename open3d::Vector3<T>::Type open3d::Vector3<T>::Type::operator -(const open3d::Vector3<T>::Type& v) const
+typename open3d::Vector3<T>::Type open3d::Vector3<T>::Type::operator -(
+    const open3d::Vector3<T>::Type& v) const
 {
     Vector3<T>::Type output = {x - v.x, y - v.y, z - v.z };
 
@@ -107,7 +113,8 @@ typename open3d::Vector3<T>::Type open3d::Vector3<T>::Type::operator -(const ope
 // addtion assignment.
 // ----------------------------------------------------------------------------
 template<typename T>
-typename open3d::Vector3<T>::Type& open3d::Vector3<T>::Type::operator +=(const open3d::Vector3<T>::Type& v)
+typename open3d::Vector3<T>::Type& open3d::Vector3<T>::Type::operator +=(
+    const open3d::Vector3<T>::Type& v)
 {
     x += v.x;
     y += v.y;
@@ -120,7 +127,8 @@ typename open3d::Vector3<T>::Type& open3d::Vector3<T>::Type::operator +=(const o
 // subtraction assignment.
 // ----------------------------------------------------------------------------
 template<typename T>
-typename open3d::Vector3<T>::Type& open3d::Vector3<T>::Type::operator -=(const open3d::Vector3<T>::Type& v)
+typename open3d::Vector3<T>::Type& open3d::Vector3<T>::Type::operator -=(
+    const open3d::Vector3<T>::Type& v)
 {
     x -= v.x;
     y -= v.y;
@@ -133,7 +141,8 @@ typename open3d::Vector3<T>::Type& open3d::Vector3<T>::Type::operator -=(const o
 // addtion.
 // ----------------------------------------------------------------------------
 template<typename T>
-typename open3d::Vector3<T>::Type open3d::Vector3<T>::Type::operator +(const T& t) const
+typename open3d::Vector3<T>::Type open3d::Vector3<T>::Type::operator +(
+    const T& t) const
 {
     Vector3<T>::Type output = {x + t, y + t, z + t };
 
@@ -144,7 +153,8 @@ typename open3d::Vector3<T>::Type open3d::Vector3<T>::Type::operator +(const T& 
 // subtraction.
 // ----------------------------------------------------------------------------
 template<typename T>
-typename open3d::Vector3<T>::Type open3d::Vector3<T>::Type::operator -(const T& t) const
+typename open3d::Vector3<T>::Type open3d::Vector3<T>::Type::operator -(
+    const T& t) const
 {
     Vector3<T>::Type output = {x - t, y - t, z - t };
 
@@ -155,7 +165,8 @@ typename open3d::Vector3<T>::Type open3d::Vector3<T>::Type::operator -(const T& 
 // multiply with scalar.
 // ----------------------------------------------------------------------------
 template<typename T>
-typename open3d::Vector3<T>::Type open3d::Vector3<T>::Type::operator *(const T& t) const
+typename open3d::Vector3<T>::Type open3d::Vector3<T>::Type::operator *(
+    const T& t) const
 {
     Vector3<T>::Type output = {x * t, y * t, z * t };
 
@@ -166,7 +177,8 @@ typename open3d::Vector3<T>::Type open3d::Vector3<T>::Type::operator *(const T& 
 // divide by scalar.
 // ----------------------------------------------------------------------------
 template<typename T>
-typename open3d::Vector3<T>::Type open3d::Vector3<T>::Type::operator /(const T& t) const
+typename open3d::Vector3<T>::Type open3d::Vector3<T>::Type::operator /(
+    const T& t) const
 {
     Vector3<T>::Type output = {x / t, y / t, z / t };
 
@@ -177,7 +189,8 @@ typename open3d::Vector3<T>::Type open3d::Vector3<T>::Type::operator /(const T& 
 // addtion assignment.
 // ----------------------------------------------------------------------------
 template<typename T>
-typename open3d::Vector3<T>::Type& open3d::Vector3<T>::Type::operator +=(const T& t)
+typename open3d::Vector3<T>::Type& open3d::Vector3<T>::Type::operator +=(
+    const T& t)
 {
     x += t;
     y += t;
@@ -190,7 +203,8 @@ typename open3d::Vector3<T>::Type& open3d::Vector3<T>::Type::operator +=(const T
 // subtraction assignment.
 // ----------------------------------------------------------------------------
 template<typename T>
-typename open3d::Vector3<T>::Type& open3d::Vector3<T>::Type::operator -=(const T& t)
+typename open3d::Vector3<T>::Type& open3d::Vector3<T>::Type::operator -=(
+    const T& t)
 {
     x -= t;
     y -= t;
@@ -203,7 +217,8 @@ typename open3d::Vector3<T>::Type& open3d::Vector3<T>::Type::operator -=(const T
 // multiplication assignment.
 // ----------------------------------------------------------------------------
 template<typename T>
-typename open3d::Vector3<T>::Type& open3d::Vector3<T>::Type::operator *=(const T& t)
+typename open3d::Vector3<T>::Type& open3d::Vector3<T>::Type::operator *=(
+    const T& t)
 {
     x *= t;
     y *= t;
@@ -216,7 +231,8 @@ typename open3d::Vector3<T>::Type& open3d::Vector3<T>::Type::operator *=(const T
 // division assignment.
 // ----------------------------------------------------------------------------
 template<typename T>
-typename open3d::Vector3<T>::Type& open3d::Vector3<T>::Type::operator /=(const T& t)
+typename open3d::Vector3<T>::Type& open3d::Vector3<T>::Type::operator /=(
+    const T& t)
 {
     x /= t;
     y /= t;
@@ -229,7 +245,9 @@ typename open3d::Vector3<T>::Type& open3d::Vector3<T>::Type::operator /=(const T
 // Less than or equal X component.
 // ----------------------------------------------------------------------------
 template<typename T>
-bool open3d::Vector3<T>::Type::LEX(const open3d::Vector3<T>::Type& v0, const open3d::Vector3<T>::Type& v1)
+bool open3d::Vector3<T>::Type::LEX(
+    const open3d::Vector3<T>::Type& v0,
+    const open3d::Vector3<T>::Type& v1)
 {
     return v0.x <= v1.x;
 }
@@ -238,7 +256,9 @@ bool open3d::Vector3<T>::Type::LEX(const open3d::Vector3<T>::Type& v0, const ope
 // Greater than or equal X component.
 // ----------------------------------------------------------------------------
 template<typename T>
-bool open3d::Vector3<T>::Type::GEX(const open3d::Vector3<T>::Type& v0, const open3d::Vector3<T>::Type& v1)
+bool open3d::Vector3<T>::Type::GEX(
+    const open3d::Vector3<T>::Type& v0,
+    const open3d::Vector3<T>::Type& v1)
 {
     return v0.x >= v1.x;
 }
@@ -247,7 +267,9 @@ bool open3d::Vector3<T>::Type::GEX(const open3d::Vector3<T>::Type& v0, const ope
 // Less than or equal Y component.
 // ----------------------------------------------------------------------------
 template<typename T>
-bool open3d::Vector3<T>::Type::LEY(const open3d::Vector3<T>::Type& v0, const open3d::Vector3<T>::Type& v1)
+bool open3d::Vector3<T>::Type::LEY(
+    const open3d::Vector3<T>::Type& v0,
+    const open3d::Vector3<T>::Type& v1)
 {
     return v0.y <= v1.y;
 }
@@ -256,7 +278,9 @@ bool open3d::Vector3<T>::Type::LEY(const open3d::Vector3<T>::Type& v0, const ope
 // Greater than or equal Y component.
 // ----------------------------------------------------------------------------
 template<typename T>
-bool open3d::Vector3<T>::Type::GEY(const open3d::Vector3<T>::Type& v0, const open3d::Vector3<T>::Type& v1)
+bool open3d::Vector3<T>::Type::GEY(
+    const open3d::Vector3<T>::Type& v0,
+    const open3d::Vector3<T>::Type& v1)
 {
     return v0.y >= v1.y;
 }
@@ -265,7 +289,9 @@ bool open3d::Vector3<T>::Type::GEY(const open3d::Vector3<T>::Type& v0, const ope
 // Less than or equal Z component.
 // ----------------------------------------------------------------------------
 template<typename T>
-bool open3d::Vector3<T>::Type::LEZ(const open3d::Vector3<T>::Type& v0, const open3d::Vector3<T>::Type& v1)
+bool open3d::Vector3<T>::Type::LEZ(
+    const open3d::Vector3<T>::Type& v0,
+    const open3d::Vector3<T>::Type& v1)
 {
     return v0.z <= v1.z;
 }
@@ -274,7 +300,9 @@ bool open3d::Vector3<T>::Type::LEZ(const open3d::Vector3<T>::Type& v0, const ope
 // Greater than or equal Z component.
 // ----------------------------------------------------------------------------
 template<typename T>
-bool open3d::Vector3<T>::Type::GEZ(const open3d::Vector3<T>::Type& v0, const open3d::Vector3<T>::Type& v1)
+bool open3d::Vector3<T>::Type::GEZ(
+    const open3d::Vector3<T>::Type& v0,
+    const open3d::Vector3<T>::Type& v1)
 {
     return v0.z >= v1.z;
 }
