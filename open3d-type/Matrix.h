@@ -17,9 +17,9 @@ namespace open3d
             T s[R][C];
 
             // subscript operator: readwrite
-            T& operator [](const uint& i);
+            T* operator [](const uint& i);
             // subscript operator: readonly
-            const T& operator [](const uint& i) const;
+            const T* operator [](const uint& i) const;
         } Type;
     };
 

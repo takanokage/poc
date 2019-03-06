@@ -11,24 +11,24 @@ using namespace std;
 // subscript operator: readwrite
 // ----------------------------------------------------------------------------
 template<typename T, uint R, uint C>
-T& open3d::Matrix<T, R, C>::Type::operator [](const uint& i)
+T* open3d::Matrix<T, R, C>::Type::operator [](const uint& i)
 {
     // catch error in debug mode
     assert(0 <= i && i < 3);
 
-    return ((T*)this)[i];
+    return (T*)&s[i];
 }
 
 // ----------------------------------------------------------------------------
 // subscript operator: readonly
 // ----------------------------------------------------------------------------
 template<typename T, uint R, uint C>
-const T& open3d::Matrix<T, R, C>::Type::operator [](const uint& i) const
+const T* open3d::Matrix<T, R, C>::Type::operator [](const uint& i) const
 {
     // catch error in debug mode
     assert(0 <= i && i < 3);
 
-    return ((const T* const)this)[i];
+    return (const T* const)&s[i];
 }
 
 // Template instantiations:
