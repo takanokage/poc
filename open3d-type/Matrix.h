@@ -43,4 +43,5 @@ namespace open3d
     using Vector3 = typename Matrix<T, 3, 1>::Type;
 
     typedef Matrix<float, 3, 3>::Type Matrix3f;
+    typedef Matrix<float, 3, 1>::Type Vector3f;
 }
