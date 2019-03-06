@@ -38,6 +38,11 @@ namespace open3d
             T& operator [](const uint& i);
             // subscript operator: readonly
             const T& operator [](const uint& i) const;
+
+            bool operator ==(const _Type& m);
+            bool operator !=(const _Type& m);
+            bool operator <=(const _Type& m);
+            bool operator >=(const _Type& m);
         } Type;
     };
 

@@ -77,20 +77,26 @@ void Test_subscript_ops()
 
 void Test_comparison_ops()
 {
-    open3d::Matrix<float, 3, 3>::Type m0 =
+    open3d::Matrix3f m0 =
     {
          0.0f, 1.0f, 2.0f ,
          3.0f, 4.0f, 5.0f ,
          6.0f, 7.0f, 8.0f
     };
 
-    open3d::Matrix<float, 3, 3>::Type m1 =
+    open3d::Matrix3f m1 =
     {
          0.0f, 1.0f, 2.0f ,
          3.0f, 4.0f, 5.0f ,
          6.0f, 7.0f, 8.0f
     };
 
-    cout << "m0 is " << ((m0 == m1) ? "" : "not") << " equal to m1." << endl;
+    cout << "m0 is" << ((m0 == m1) ? "" : " not") << " equal to m1." << endl;
+    cout << endl;
 
+    open3d::Vector3<float> v0 = { 0.0f, 0.1f, 0.2f };
+    open3d::Vector3<float> v1 = { 0.0f, 0.1f, 0.2f };
+
+    cout << "v0 is" << ((v0 == v1) ? "" : " not") << " equal to v1." << endl;
+    cout << endl;
 }

@@ -60,14 +60,16 @@ const T& open3d::Matrix<T, R, 1>::Type::operator [](const uint& i) const
 template<typename T, uint R, uint C>
 bool open3d::Matrix<T, R, C>::Type::operator ==(const open3d::Matrix<T, R, C>::Type& m)
 {
-    // for (uint r = 0; r < R; r++)
-    //     for (uint c = 0; c < C; c++)
-    //         if (m0[r][c] != m1[r][c])
-    //             return false;
-
+    //*/// v0
+    for (uint r = 0; r < R; r++)
+        for (uint c = 0; c < C; c++)
+            if ((*this)[r][c] != m[r][c])
+                return false;
+    /*/// v1
     for (uint i = 0; i < R * C; i++)
         if (((T*)s)[i] != ((T*)m.s)[i])
             return false;
+    //*///
 
     return true;
 }
@@ -85,14 +87,16 @@ bool open3d::Matrix<T, R, C>::Type::operator !=(const open3d::Matrix<T, R, C>::T
 template<typename T, uint R, uint C>
 bool open3d::Matrix<T, R, C>::Type::operator <=(const open3d::Matrix<T, R, C>::Type& m)
 {
-    // for (uint r = 0; r < R; r++)
-    //     for (uint c = 0; c < C; c++)
-    //         if (m0[r][c] > m1[r][c])
-    //             return false;
-
+    //*/// v0
+    for (uint r = 0; r < R; r++)
+        for (uint c = 0; c < C; c++)
+            if ((*this)[r][c] > m[r][c])
+                return false;
+    /*/// v1
     for (uint i = 0; i < R * C; i++)
         if (((T*)s)[i] > ((T*)m.s)[i])
             return false;
+    //*///
 
     return true;
 }
@@ -102,14 +106,77 @@ bool open3d::Matrix<T, R, C>::Type::operator <=(const open3d::Matrix<T, R, C>::T
 template<typename T, uint R, uint C>
 bool open3d::Matrix<T, R, C>::Type::operator >=(const open3d::Matrix<T, R, C>::Type& m)
 {
-    // for (uint r = 0; r < R; r++)
-    //     for (uint c = 0; c < C; c++)
-    //         if (m0[r][c] < m1[r][c])
-    //             return false;
-
+    //*/// v0
+    for (uint r = 0; r < R; r++)
+        if ((*this)[r] < m[r])
+            return false;
+    /*/// v1
     for (uint i = 0; i < R * C; i++)
         if (((T*)s)[i] < ((T*)m.s)[i])
             return false;
+    //*///
+
+    return true;
+}
+
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+template<typename T, uint R>
+bool open3d::Matrix<T, R, 1>::Type::operator ==(const open3d::Matrix<T, R, 1>::Type& m)
+{
+    //*/// v0
+    for (uint r = 0; r < R; r++)
+        if ((*this)[r] != m[r])
+            return false;
+    /*/// v1
+    for (uint i = 0; i < R * C; i++)
+        if (((T*)s)[i] != ((T*)m.s)[i])
+            return false;
+    //*///
+
+    return true;
+}
+
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+template<typename T, uint R>
+bool open3d::Matrix<T, R, 1>::Type::operator !=(const open3d::Matrix<T, R, 1>::Type& m)
+{
+    return !(*this == m);
+}
+
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+template<typename T, uint R>
+bool open3d::Matrix<T, R, 1>::Type::operator <=(const open3d::Matrix<T, R, 1>::Type& m)
+{
+    //*/// v0
+    for (uint r = 0; r < R; r++)
+        if ((*this)[r] > m[r])
+            return false;
+    /*/// v1
+    for (uint i = 0; i < R * C; i++)
+        if (((T*)s)[i] > ((T*)m.s)[i])
+            return false;
+    //*///
+
+    return true;
+}
+
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+template<typename T, uint R>
+bool open3d::Matrix<T, R, 1>::Type::operator >=(const open3d::Matrix<T, R, 1>::Type& m)
+{
+    //*/// v0
+    for (uint r = 0; r < R; r++)
+        if ((*this)[r] < m[r])
+            return false;
+    /*/// v1
+    for (uint i = 0; i < R * C; i++)
+        if (((T*)s)[i] < ((T*)m.s)[i])
+            return false;
+    //*///
 
     return true;
 }
