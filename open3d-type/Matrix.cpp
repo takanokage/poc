@@ -36,6 +36,24 @@ const T* open3d::Matrix<T, ROWS, COLS>::Type::operator [](const uint& i) const
 }
 
 // ----------------------------------------------------------------------------
+// casting operator: readwrite
+// ----------------------------------------------------------------------------
+template<typename T, uint ROWS, uint COLS>
+open3d::Matrix<T, ROWS, COLS>::Type::operator T* const()
+{
+    return reinterpret_cast<T*>(s);
+}
+
+// ----------------------------------------------------------------------------
+// casting operator: readonly
+// ----------------------------------------------------------------------------
+template<typename T, uint ROWS, uint COLS>
+open3d::Matrix<T, ROWS, COLS>::Type::operator const T* const()
+{
+    return reinterpret_cast<const T* const>(s);
+}
+
+// ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
 template<typename T, uint ROWS, uint COLS>
 bool open3d::Matrix<T, ROWS, COLS>::Type::operator ==(const open3d::Matrix<T, ROWS, COLS>::Type& m)
@@ -269,6 +287,24 @@ const T& open3d::Matrix<T, 1, COLS>::Type::operator [](const uint& i) const
     assert(0 <= i && i < 3);
 
     return s[i];
+}
+
+// ----------------------------------------------------------------------------
+// casting operator: readwrite
+// ----------------------------------------------------------------------------
+template<typename T, uint COLS>
+open3d::Matrix<T, 1, COLS>::Type::operator T* const()
+{
+    return reinterpret_cast<T*>(s);
+}
+
+// ----------------------------------------------------------------------------
+// casting operator: readonly
+// ----------------------------------------------------------------------------
+template<typename T, uint COLS>
+open3d::Matrix<T, 1, COLS>::Type::operator const T* const()
+{
+    return reinterpret_cast<const T* const>(s);
 }
 
 // ----------------------------------------------------------------------------

@@ -22,6 +22,11 @@ namespace open3d
             // subscript operator: readonly
             const T* operator [](const uint& i) const;
 
+            // casting operator: readwrite
+            explicit operator T* const();
+            // casting operator: readonly
+            explicit operator const T* const();
+
             bool operator ==(const _Type& m);
             bool operator !=(const _Type& m);
             bool operator <=(const _Type& m);
@@ -66,6 +71,11 @@ namespace open3d
             T& operator [](const uint& i);
             // subscript operator: readonly
             const T& operator [](const uint& i) const;
+
+            // casting operator: readwrite
+            explicit operator T* const();
+            // casting operator: readonly
+            explicit operator const T* const();
 
             bool operator ==(const _Type& m);
             bool operator !=(const _Type& m);
