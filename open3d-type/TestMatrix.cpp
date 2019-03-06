@@ -13,12 +13,22 @@ using namespace std;
 
 #include "performance.h"
 
+const int width = 8;
+const int precision = 3;
+
+void Test_subscript_ops();
+void Test_comparison_ops();
+
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
 void TestMatrix()
 {
-    int width = 8;
-    int precision = 3;
+    Test_subscript_ops();
+    Test_comparison_ops();
+}
+
+void Test_subscript_ops()
+{
     cout << setprecision(precision);
 
     open3d::Matrix<float, 3, 3>::Type m =
@@ -63,4 +73,24 @@ void TestMatrix()
     cout << setw(width) << v3[1];
     cout << setw(width) << v3[2] << endl;
     cout << endl;
+}
+
+void Test_comparison_ops()
+{
+    open3d::Matrix<float, 3, 3>::Type m0 =
+    {
+         0.0f, 1.0f, 2.0f ,
+         3.0f, 4.0f, 5.0f ,
+         6.0f, 7.0f, 8.0f
+    };
+
+    open3d::Matrix<float, 3, 3>::Type m1 =
+    {
+         0.0f, 1.0f, 2.0f ,
+         3.0f, 4.0f, 5.0f ,
+         6.0f, 7.0f, 8.0f
+    };
+
+    cout << "m0 is " << ((m0 == m1) ? "" : "not") << " equal to m1." << endl;
+
 }
