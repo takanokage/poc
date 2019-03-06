@@ -109,6 +109,10 @@ namespace open3d
         } Type;
     };
 
+    // 2D tensor, row major, size 3
+    template<typename T>
+    using Matrix3 = typename Matrix<T, 3, 3>::Type;
+
     // 1D tensor, row major, unspecified number of elements
     template<typename T, uint COLS>
     using Vector = typename Matrix<T, 1, COLS>::Type;
@@ -118,7 +122,9 @@ namespace open3d
     using Vector3 = typename Matrix<T, 1, 3>::Type;
 
     // 2D 3x3 tensor
-    typedef Matrix<float, 3, 3>::Type Matrix3f;
+    // typedef Matrix<float, 3, 3>::Type Matrix3f;
+    typedef Matrix3<float> Matrix3f;
     // 1D 1x3 tensor
-    typedef Vector<float, 3> Vector3f;
+    // typedef Vector<float, 3> Vector3f;
+    typedef Vector3<float> Vector3f;
 }
