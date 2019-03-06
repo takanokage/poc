@@ -31,4 +31,9 @@ void TestMatrix()
     cout << setw(width) << v3.s[1][0];
     cout << setw(width) << v3.s[2][0] << endl;
     cout << endl;
+
+    cout << setw(width) << v3[0];
+    cout << setw(width) << v3[1];
+    cout << setw(width) << v3[2] << endl;
+    cout << endl;
 }
