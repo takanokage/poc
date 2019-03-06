@@ -21,7 +21,23 @@ void TestMatrix()
     int precision = 3;
     cout << setprecision(precision);
 
-    open3d::Matrix<float, 3, 3>::Type m;
+    open3d::Matrix<float, 3, 3>::Type m =
+    {
+         0.0f, 1.0f, 2.0f ,
+         3.0f, 4.0f, 5.0f ,
+         6.0f, 7.0f, 8.0f
+    };
+
+    cout << setw(width) << m[0];
+    cout << setw(width) << m[1];
+    cout << setw(width) << m[2] << endl;
+    cout << setw(width) << m[3];
+    cout << setw(width) << m[4];
+    cout << setw(width) << m[5] << endl;
+    cout << setw(width) << m[6];
+    cout << setw(width) << m[7];
+    cout << setw(width) << m[8] << endl;
+    cout << endl;
 
     open3d::Vector<float, 3> v = { 1.0f, 1.1f, 1.2f };
 

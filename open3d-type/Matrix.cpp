@@ -32,4 +32,5 @@ const T& open3d::Matrix<T, R, C>::Type::operator [](const uint& i) const
 }
 
 // Template instantiations:
+template class open3d::Matrix<float, 3, 3>;
 template class open3d::Matrix<float, 3, 1>;
