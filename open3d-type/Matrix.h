@@ -22,6 +22,19 @@ namespace open3d
             const T* operator [](const uint& i) const;
         } Type;
     };
+    template<typename T, uint R>
+    struct Matrix<T, R, 1>
+    {
+        typedef struct _Type
+        {
+            T s[R];
+
+            // subscript operator: readwrite
+            T& operator [](const uint& i);
+            // subscript operator: readonly
+            const T& operator [](const uint& i) const;
+        } Type;
+    };
 
     template<typename T, uint R>
     using Vector = typename Matrix<T, R, 1>::Type;
