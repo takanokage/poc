@@ -11,6 +11,10 @@ environment:
   - CPP: latest
     CONFIG: Release
     SHARED: ON
+install:
+- ps: |
+  $env:CMAKE_ARCH = "x64"
+  $env:CMAKE_GENERATOR = "Visual Studio 15 2017"
 build_script:
 - cd open3d-type
 - mkdir -p build
