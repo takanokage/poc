@@ -9,122 +9,376 @@ typedef unsigned int uint;
 
 namespace open3d
 {
-    // 2D tensor, row major
-    template<typename T, uint ROWS, uint COLS>
-    struct Matrix
+// 2D tensor, row major
+template <typename T, uint ROWS, uint COLS>
+struct Matrix
+{
+    typedef struct _Type
     {
-        typedef struct _Type
+        T s[ROWS][COLS];
+
+        // subscript operator: readwrite
+        T *operator[](const uint &i)
         {
-            T s[ROWS][COLS];
+            // catch error in debug mode
+            assert(0 <= i && i < 3);
 
-            // subscript operator: readwrite
-            T* operator [](const uint& i);
-            // subscript operator: readonly
-            const T* operator [](const uint& i) const;
+            return (T *)&s[i];
+        }
+        // subscript operator: readonly
+        const T *operator[](const uint &i) const
+        {
+            // catch error in debug mode
+            assert(0 <= i && i < 3);
 
-            // casting operator: readwrite
-            explicit operator T* const();
-            // casting operator: readonly
-            explicit operator const T* const();
+            return (const T *const) & s[i];
+        }
 
-            bool operator ==(const _Type& m);
-            bool operator !=(const _Type& m);
-            bool operator <=(const _Type& m);
-            bool operator >=(const _Type& m);
+        // casting operator: readwrite
+        explicit operator T *const()
+        {
+            return reinterpret_cast<T *>(s);
+        }
+        // casting operator: readonly
+        explicit operator const T *const()
+        {
+            return reinterpret_cast<const T *const>(s);
+        }
 
-            // addition
-            _Type operator +(const _Type& v) const;
-            // subtraction
-            _Type operator -(const _Type& v) const;
-            // addition assignment
-            _Type& operator +=(const _Type& v);
-            // subtraction assignment
-            _Type& operator -=(const _Type& v);
-            // addition
-            _Type operator +(const T& v) const;
-            // subtraction
-            _Type operator -(const T& v) const;
-            // multiply with scalar
-            _Type operator *(const T& v) const;
-            // divide by scalar
-            _Type operator /(const T& v) const;
-            // addition assignment
-            _Type& operator +=(const T& v);
-            // subtraction assignment
-            _Type& operator -=(const T& v);
-            // multiplication assignment
-            _Type& operator *=(const T& v);
-            // division assignment
-            _Type& operator /=(const T& v);
-        } Type;
-    };
+        bool operator==(const _Type &m)
+        {
+            for (uint r = 0; r < ROWS; r++)
+                for (uint c = 0; c < COLS; c++)
+                    if ((*this)[r][c] != m[r][c])
+                        return false;
 
-    // 1D tensor, row major
-    template<typename T, uint COLS>
-    struct Matrix<T, 1, COLS>
+            return true;
+        }
+        bool operator!=(const _Type &m)
+        {
+            return !(*this == m);
+        }
+        bool operator<=(const _Type &m)
+        {
+            for (uint r = 0; r < ROWS; r++)
+                for (uint c = 0; c < COLS; c++)
+                    if ((*this)[r][c] > m[r][c])
+                        return false;
+
+            return true;
+        }
+        bool operator>=(const _Type &m)
+        {
+            for (uint r = 0; r < ROWS; r++)
+                if ((*this)[r] < m[r])
+                    return false;
+
+            return true;
+        }
+
+        // addition
+        _Type operator+(const _Type &m) const
+        {
+            Matrix<T, ROWS, COLS>::Type output;
+            for (uint r = 0; r < ROWS; r++)
+                for (uint c = 0; c < COLS; c++)
+                    output[r][c] = (*this)[r][c] + m[r][c];
+
+            return output;
+        }
+        // subtraction
+        _Type operator-(const _Type &m) const
+        {
+            Matrix<T, ROWS, COLS>::Type output;
+            for (uint r = 0; r < ROWS; r++)
+                for (uint c = 0; c < COLS; c++)
+                    output[r][c] = (*this)[r][c] - m[r][c];
+
+            return output;
+        }
+        // addition assignment
+        _Type &operator+=(const _Type &m)
+        {
+            for (uint r = 0; r < ROWS; r++)
+                for (uint c = 0; c < COLS; c++)
+                    (*this)[r][c] += m[r][c];
+
+            return *this;
+        }
+        // subtraction assignment
+        _Type &operator-=(const _Type &m)
+        {
+            for (uint r = 0; r < ROWS; r++)
+                for (uint c = 0; c < COLS; c++)
+                    (*this)[r][c] -= m[r][c];
+
+            return *this;
+        }
+        // addition
+        _Type operator+(const T &t) const
+        {
+            Matrix<T, ROWS, COLS>::Type output;
+            for (uint r = 0; r < ROWS; r++)
+                for (uint c = 0; c < COLS; c++)
+                    output[r][c] = (*this)[r][c] + t;
+
+            return output;
+        }
+        // subtraction
+        _Type operator-(const T &t) const
+        {
+            Matrix<T, ROWS, COLS>::Type output;
+            for (uint r = 0; r < ROWS; r++)
+                for (uint c = 0; c < COLS; c++)
+                    output[r][c] = (*this)[r][c] - t;
+
+            return output;
+        }
+        // multiply with scalar
+        _Type operator*(const T &t) const
+        {
+            Matrix<T, ROWS, COLS>::Type output;
+            for (uint r = 0; r < ROWS; r++)
+                for (uint c = 0; c < COLS; c++)
+                    output[r][c] = (*this)[r][c] * t;
+
+            return output;
+        }
+        // divide by scalar
+        _Type operator/(const T &t) const
+        {
+            Matrix<T, ROWS, COLS>::Type output;
+            for (uint r = 0; r < ROWS; r++)
+                for (uint c = 0; c < COLS; c++)
+                    output[r][c] = (*this)[r][c] / t;
+
+            return output;
+        }
+        // addition assignment
+        _Type &operator+=(const T &t)
+        {
+            for (uint r = 0; r < ROWS; r++)
+                for (uint c = 0; c < COLS; c++)
+                    (*this)[r][c] += t;
+
+            return *this;
+        }
+        // subtraction assignment
+        _Type &operator-=(const T &t)
+        {
+            for (uint r = 0; r < ROWS; r++)
+                for (uint c = 0; c < COLS; c++)
+                    (*this)[r][c] -= t;
+
+            return *this;
+        }
+        // multiplication assignment
+        _Type &operator*=(const T &t)
+        {
+            for (uint r = 0; r < ROWS; r++)
+                for (uint c = 0; c < COLS; c++)
+                    (*this)[r][c] *= t;
+
+            return *this;
+        }
+        // division assignment
+        _Type &operator/=(const T &t)
+        {
+            for (uint r = 0; r < ROWS; r++)
+                for (uint c = 0; c < COLS; c++)
+                    (*this)[r][c] /= t;
+
+            return *this;
+        }
+    } Type;
+};
+
+// 1D tensor, row major
+template <typename T, uint COLS>
+struct Matrix<T, 1, COLS>
+{
+    typedef struct _Type
     {
-        typedef struct _Type
+        T s[COLS];
+
+        // subscript operator: readwrite
+        T &operator[](const uint &i)
         {
-            T s[COLS];
+            // catch error in debug mode
+            assert(0 <= i && i < 3);
 
-            // subscript operator: readwrite
-            T& operator [](const uint& i);
-            // subscript operator: readonly
-            const T& operator [](const uint& i) const;
+            return s[i];
+        }
+        // subscript operator: readonly
+        const T &operator[](const uint &i) const
+        {
+            // catch error in debug mode
+            assert(0 <= i && i < 3);
 
-            // casting operator: readwrite
-            explicit operator T* const();
-            // casting operator: readonly
-            explicit operator const T* const();
+            return s[i];
+        }
 
-            bool operator ==(const _Type& m);
-            bool operator !=(const _Type& m);
-            bool operator <=(const _Type& m);
-            bool operator >=(const _Type& m);
+        // casting operator: readwrite
+        explicit operator T *const()
+        {
+            return reinterpret_cast<T *>(s);
+        }
+        // casting operator: readonly
+        explicit operator const T *const()
+        {
+            return reinterpret_cast<const T *const>(s);
+        }
 
-            // addition
-            _Type operator +(const _Type& v) const;
-            // subtraction
-            _Type operator -(const _Type& v) const;
-            // addition assignment
-            _Type& operator +=(const _Type& v);
-            // subtraction assignment
-            _Type& operator -=(const _Type& v);
-            // addition
-            _Type operator +(const T& v) const;
-            // subtraction
-            _Type operator -(const T& v) const;
-            // multiply with scalar
-            _Type operator *(const T& v) const;
-            // divide by scalar
-            _Type operator /(const T& v) const;
-            // addition assignment
-            _Type& operator +=(const T& v);
-            // subtraction assignment
-            _Type& operator -=(const T& v);
-            // multiplication assignment
-            _Type& operator *=(const T& v);
-            // division assignment
-            _Type& operator /=(const T& v);
-        } Type;
-    };
+        bool operator==(const _Type &v)
+        {
+            for (uint c = 0; c < COLS; c++)
+                if ((*this)[c] != v[c])
+                    return false;
 
-    // 2D tensor, row major, size 3
-    template<typename T>
-    using Matrix3 = typename Matrix<T, 3, 3>::Type;
+            return true;
+        }
+        bool operator!=(const _Type &v)
+        {
+            return !(*this == v);
+        }
+        bool operator<=(const _Type &v)
+        {
+            for (uint c = 0; c < COLS; c++)
+                if ((*this)[c] > v[c])
+                    return false;
 
-    // 1D tensor, row major, unspecified number of elements
-    template<typename T, uint COLS>
-    using Vector = typename Matrix<T, 1, COLS>::Type;
+            return true;
+        }
+        bool operator>=(const _Type &v)
+        {
+            for (uint c = 0; c < COLS; c++)
+                if ((*this)[c] < v[c])
+                    return false;
 
-    // 1D tensor, row major, size 3
-    template<typename T>
-    using Vector3 = typename Matrix<T, 1, 3>::Type;
+            return true;
+        }
 
-    // 2D 3x3 tensor
-    // typedef Matrix<float, 3, 3>::Type Matrix3f;
-    typedef Matrix3<float> Matrix3f;
-    // 1D 1x3 tensor
-    // typedef Vector<float, 3> Vector3f;
-    typedef Vector3<float> Vector3f;
-}
+        // addition
+        _Type operator+(const _Type &v) const
+        {
+            Matrix<T, 1, COLS>::Type output;
+            for (uint c = 0; c < COLS; c++)
+                output[c] = (*this)[c] + v[c];
+
+            return output;
+        }
+        // subtraction
+        _Type operator-(const _Type &v) const
+        {
+            Matrix<T, 1, COLS>::Type output;
+            for (uint c = 0; c < COLS; c++)
+                output[c] = (*this)[c] - v[c];
+
+            return output;
+        }
+        // addition assignment
+        _Type &operator+=(const _Type &v)
+        {
+            for (uint c = 0; c < COLS; c++)
+                (*this)[c] += v[c];
+
+            return *this;
+        }
+        // subtraction assignment
+        _Type &operator-=(const _Type &v)
+        {
+            for (uint c = 0; c < COLS; c++)
+                (*this)[c] -= v[c];
+
+            return *this;
+        }
+        // addition
+        _Type operator+(const T &t) const
+        {
+            Matrix<T, 1, COLS>::Type output;
+            for (uint c = 0; c < COLS; c++)
+                output[c] = (*this)[c] + t;
+
+            return output;
+        }
+        // subtraction
+        _Type operator-(const T &t) const
+        {
+            Matrix<T, 1, COLS>::Type output;
+            for (uint c = 0; c < COLS; c++)
+                output[c] = (*this)[c] - t;
+
+            return output;
+        }
+        // multiply with scalar
+        _Type operator*(const T &t) const
+        {
+            Matrix<T, 1, COLS>::Type output;
+            for (uint c = 0; c < COLS; c++)
+                output[c] = (*this)[c] * t;
+
+            return output;
+        }
+        // divide by scalar
+        _Type operator/(const T &t) const
+        {
+            Matrix<T, 1, COLS>::Type output;
+            for (uint c = 0; c < COLS; c++)
+                output[c] = (*this)[c] / t;
+
+            return output;
+        }
+        // addition assignment
+        _Type &operator+=(const T &t)
+        {
+            for (uint c = 0; c < COLS; c++)
+                (*this)[c] += t;
+
+            return *this;
+        }
+        // subtraction assignment
+        _Type &operator-=(const T &t)
+        {
+            for (uint c = 0; c < COLS; c++)
+                (*this)[c] -= t;
+
+            return *this;
+        }
+        // multiplication assignment
+        _Type &operator*=(const T &t)
+        {
+            for (uint c = 0; c < COLS; c++)
+                (*this)[c] *= t;
+
+            return *this;
+        }
+        // division assignment
+        _Type &operator/=(const T &t)
+        {
+            for (uint c = 0; c < COLS; c++)
+                (*this)[c] /= t;
+
+            return *this;
+        }
+    } Type;
+};
+
+// 2D tensor, row major, size 3
+template <typename T>
+using Matrix3 = typename Matrix<T, 3, 3>::Type;
+
+// 1D tensor, row major, unspecified number of elements
+template <typename T, uint COLS>
+using Vector = typename Matrix<T, 1, COLS>::Type;
+
+// 1D tensor, row major, size 3
+template <typename T>
+using Vector3 = typename Matrix<T, 1, 3>::Type;
+
+// 2D 3x3 tensor
+// typedef Matrix<float, 3, 3>::Type Matrix3f;
+typedef Matrix3<float> Matrix3f;
+// 1D 1x3 tensor
+// typedef Vector<float, 3> Vector3f;
+typedef Vector3<float> Vector3f;
+} // namespace open3d
