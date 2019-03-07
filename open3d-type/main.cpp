@@ -8,7 +8,7 @@ using namespace std;
 
 int main(int argc, char **argv)
 {
-    TestVector3f();
+    // TestVector3f();
     TestMatrix();
 
     return 0;

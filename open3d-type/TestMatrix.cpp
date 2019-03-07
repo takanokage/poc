@@ -16,6 +16,7 @@ using namespace std;
 const int width = 8;
 const int precision = 3;
 
+void Test_sizeof();
 void Test_subscript_ops();
 void Test_comparison_ops();
 
@@ -23,8 +24,20 @@ void Test_comparison_ops();
 // ----------------------------------------------------------------------------
 void TestMatrix()
 {
+    Test_sizeof();
     Test_subscript_ops();
     Test_comparison_ops();
+}
+
+void Test_sizeof()
+{
+    cout << "sizeof(3x3xfloat) = " << 3 * 3 * sizeof(float) << endl;
+    cout << "sizeof(Matrix3f) = " << sizeof(Matrix3f) << endl;
+    cout << endl;
+
+    cout << "sizeof(3xfloat) = " << 3 * sizeof(float) << endl;
+    cout << "sizeof(Vector3f) = " << sizeof(Vector3f) << endl;
+    cout << endl;
 }
 
 void Test_subscript_ops()
