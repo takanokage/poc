@@ -13,4 +13,8 @@ environment:
     SHARED: ON
 build_script:
 - cd open3d-type
-- ./build.sh
+- cd open3d-type
+- mkdir -p build
+- cd build
+- cmake -G "%CMAKE_GENERATOR%" -A "%CMAKE_ARCH%" ..
+- cmake --build . --parallel %NUMBER_OF_PROCESSORS% --config %CONFIG%
