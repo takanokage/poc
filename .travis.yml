@@ -1,0 +1,34 @@
+language: ruby
+env:
+  global:
+    - NPROC=2
+
+notifications:
+  email:
+    on_success: never
+    on_failure: always
+
+matrix:
+
+  include:
+
+    # Similar environment of Ubuntu 16.04 (gcc 5.4)
+    - os: linux
+      dist: trusty
+      sudo: required
+      language: c++
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - gcc-6
+            - g++-6
+            - cmake3
+      before_install:
+      script:
+        - cd open3d-type
+        - mkdir -p build
+        - cd build
+        - cmake .. -DCMAKE_BUILD_TYPE=Release
+        - make -j $(nproc)
