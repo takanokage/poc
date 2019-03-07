@@ -10,14 +10,9 @@ environment:
   matrix:
   - CPP: latest
     CONFIG: Release
-    SHARED: ON
-install:
-- ps: |
-  $env:CMAKE_ARCH = "x64"
-  $env:CMAKE_GENERATOR = "Visual Studio 15 2017"
 build_script:
 - cd open3d-type
 - mkdir -p build
 - cd build
-- cmake -G "%CMAKE_GENERATOR%" -A "%CMAKE_ARCH%" ..
+- cmake -G "Visual Studio 15 2017" -A "x64" ..
 - cmake --build . --parallel %NUMBER_OF_PROCESSORS% --config %CONFIG%
