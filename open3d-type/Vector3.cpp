@@ -60,8 +60,3 @@ ostream& open3d::operator <<(ostream& os, const open3d::Vector3i& v)
 
     return os;
 }
-
-// Template instantiations:
-template class open3d::Vector3<double>;
-template class open3d::Vector3<float>;
-template class open3d::Vector3<int>;
