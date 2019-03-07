@@ -40,9 +40,9 @@ void TestVector3f()
     cout << endl;
 
     cout << "indexing using x, y, z named members" << endl;
-    v.x = 2.0;
-    v.y = 2.1;
-    v.z = 2.2;
+    v.x = 2.0f;
+    v.y = 2.1f;
+    v.z = 2.2f;
 
     cout << v << endl;
     cout << endl;
