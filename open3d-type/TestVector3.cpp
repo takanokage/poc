@@ -23,13 +23,13 @@ void TestVector3f()
     cout << endl;
 
     cout << "indexing using subscript operator" << endl;
-    v[X] = 1.0;
-    v[Y] = 1.1;
-    v[Z] = 1.2;
+    v[X] = 1.0f;
+    v[Y] = 1.1f;
+    v[Z] = 1.2f;
 
     // this line will fail in Debug mode due to assert in subscript operator
     // it will run fine in Release mode, it just won't do anything
-    v[W] = 1.3;
+    v[W] = 1.3f;
 
     cout << v << endl;
     cout << endl;

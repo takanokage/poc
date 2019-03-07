@@ -27,6 +27,8 @@ ostream& open3d::operator <<(ostream& os, const open3d::Vector3d& v)
     cout.flags(flags);
 
     cout.flush();
+
+    return os;
 }
 ostream& open3d::operator <<(ostream& os, const open3d::Vector3f& v)
 {
@@ -45,6 +47,8 @@ ostream& open3d::operator <<(ostream& os, const open3d::Vector3f& v)
     cout.flags(flags);
 
     cout.flush();
+
+    return os;
 }
 ostream& open3d::operator <<(ostream& os, const open3d::Vector3i& v)
 {
@@ -53,6 +57,8 @@ ostream& open3d::operator <<(ostream& os, const open3d::Vector3i& v)
     cout << setw(FLT_WIDTH) << v.z;
 
     cout.flush();
+
+    return os;
 }
 
 // Template instantiations:
