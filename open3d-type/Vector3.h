@@ -10,12 +10,12 @@ typedef unsigned int uint;
 namespace open3d
 {
 static const float FLT_THRESHOLD = -1e3;
-static const float FLT_PRECISION = 3;
-static const float FLT_WIDTH = 8;
+static const int FLT_PRECISION = 3;
+static const int FLT_WIDTH = 8;
 
 static const float DBL_THRESHOLD = -1e6;
-static const float DBL_PRECISION = 6;
-static const float DBL_WIDTH = 12;
+static const int DBL_PRECISION = 6;
+static const int DBL_WIDTH = 12;
 
 template <typename T>
 struct Vector3
