@@ -2,6 +2,7 @@
 #include "Matrix.h"
 #include "Matrix3f.h"
 #include "Matrix3d.h"
+#include "Vector3f.h"
 using namespace open3d;
 
 #include "types.h"

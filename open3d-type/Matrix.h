@@ -298,7 +298,10 @@ using Vector = typename Matrix<T, 1, COLS>::Type;
 template <typename T>
 using Vector3 = typename Matrix<T, 1, 3>::Type;
 
-// 1D 1x3 tensor
-// typedef Vector<float, 3> Vector3f;
-typedef Vector3<float> Vector3f;
+// // 2D 3x3 tensor
+// // typedef Matrix<float, 3, 3>::Type Matrix3f;
+// typedef Matrix3<float> Matrix3f;
+// // 1D 1x3 tensor
+// // typedef Vector<float, 3> Vector3f;
+// typedef Vector3<float> Vector3f;
 }  // namespace open3d
