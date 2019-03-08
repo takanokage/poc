@@ -2,6 +2,7 @@
 #include "Matrix.h"
 #include "Matrix3f.h"
 #include "Matrix3d.h"
+#include "Matrix4d.h"
 #include "Vector3f.h"
 #include "Vector3d.h"
 using namespace open3d;
@@ -41,6 +42,10 @@ void Test_sizeof()
 
     cout << "sizeof(3x3xdouble) = " << 3 * 3 * sizeof(double) << endl;
     cout << "sizeof(Matrix3d) = " << sizeof(Matrix3d) << endl;
+    cout << endl;
+
+    cout << "sizeof(4x4xdouble) = " << 4 * 4 * sizeof(double) << endl;
+    cout << "sizeof(Matrix4d) = " << sizeof(Matrix4d) << endl;
     cout << endl;
 
     cout << "sizeof(3xfloat) = " << 3 * sizeof(float) << endl;
