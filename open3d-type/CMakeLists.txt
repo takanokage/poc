@@ -6,6 +6,9 @@ set (CMAKE_CXX_STANDARD 11)
 file(GLOB_RECURSE ALL_SOURCE_FILES "*.cpp")
 file(GLOB_RECURSE ALL_HEADER_FILES "*.h")
 
+list(REMOVE_ITEM ALL_HEADER_FILES matrix.cpp)
+list(REMOVE_ITEM ALL_HEADER_FILES matrix.h)
+
 # use the root folder as the project name
 get_filename_component(ProjectName ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 project(${ProjectName})
