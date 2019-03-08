@@ -1,10 +1,5 @@
 #pragma once
 
-#include <cassert>
-#include <cmath>
-
-#include <iostream>
-
 typedef unsigned int uint;
 
 namespace open3d {

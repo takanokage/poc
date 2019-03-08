@@ -1,16 +1,18 @@
 
 #include "Matrix3d.h"
 
+#include <cassert>
+
 double *open3d::Matrix3d::operator[](const uint &i) {
     // catch error in debug mode
-    assert(0 <= i && i < 3);
+    assert(0 <= i && i < Matrix3d::ROWS);
 
     return (double *)&s[i];
 }
 
 const double *open3d::Matrix3d::operator[](const uint &i) const {
     // catch error in debug mode
-    assert(0 <= i && i < 3);
+    assert(0 <= i && i < Matrix3d::ROWS);
 
     return (const double *const) & s[i];
 }

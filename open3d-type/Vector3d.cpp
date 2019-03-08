@@ -1,16 +1,18 @@
 
 #include "Vector3d.h"
 
+#include <cassert>
+
 double &open3d::Vector3d::operator[](const uint &i) {
     // catch error in debug mode
-    assert(0 <= i && i < 3);
+    assert(0 <= i && i < Vector3d::COLS);
 
     return s[i];
 }
 
 const double &open3d::Vector3d::operator[](const uint &i) const {
     // catch error in debug mode
-    assert(0 <= i && i < 3);
+    assert(0 <= i && i < Vector3d::COLS);
 
     return s[i];
 }
