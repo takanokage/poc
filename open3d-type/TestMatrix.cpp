@@ -1,6 +1,4 @@
 
-#include "Matrix.h"
-
 #include "Matrix3f.h"
 
 #include "Matrix3d.h"
@@ -69,7 +67,7 @@ void Test_subscript_ops()
 {
     cout << setprecision(precision);
 
-    open3d::Matrix<float, 3, 3>::Type m =
+    open3d::Matrix3f m =
     {
          0.0f, 1.0f, 2.0f ,
          3.0f, 4.0f, 5.0f ,
@@ -88,7 +86,7 @@ void Test_subscript_ops()
     cout << setw(width) << m[2][2] << endl;
     cout << endl;
 
-    open3d::Vector<float, 3> v = { 0.0f, 0.1f, 0.2f };
+    open3d::Vector3f v = { 0.0f, 0.1f, 0.2f };
 
     cout << "[] access for Vector<float, 3> type:" << endl;
     cout << setw(width) << v.s[0];
@@ -100,7 +98,7 @@ void Test_subscript_ops()
     cout << setw(width) << v[2] << endl;
     cout << endl;
 
-    open3d::Vector3<float> v3 = { 3.0f, 3.1f, 3.2f };
+    open3d::Vector3f v3 = { 3.0f, 3.1f, 3.2f };
 
     cout << "[] access for Vector3<float> type:" << endl;
     cout << setw(width) << v3.s[0];
@@ -132,8 +130,8 @@ void Test_comparison_ops()
     cout << "m0 is" << ((m0 == m1) ? "" : " not") << " equal to m1." << endl;
     cout << endl;
 
-    open3d::Vector3<float> v0 = { 0.0f, 0.1f, 0.2f };
-    open3d::Vector3<float> v1 = { 0.0f, 0.1f, 0.2f };
+    open3d::Vector3f v0 = { 0.0f, 0.1f, 0.2f };
+    open3d::Vector3f v1 = { 0.0f, 0.1f, 0.2f };
 
     cout << "v0 is" << ((v0 == v1) ? "" : " not") << " equal to v1." << endl;
     cout << endl;
