@@ -261,6 +261,7 @@ vector<uint> nextTwo(const vector<uint>& bits, const uint& i) {
     return output;
 }
 
+// get the next base 10 symbol made out of binary digits (i) and (i+1).
 uint nextSymbol(const vector<uint>& bits, const uint& i) {
     uint output = 0;
 
