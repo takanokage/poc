@@ -50,7 +50,10 @@ int solution(vector<int> &a, vector<int> &b) {
 
     return min(pairs, (int)1e9);
 }
+// ----------------------------------------------------------------------------
 
+// perform a test on randomly initialized a and b vectors
+// measure the average execution time over a number of loops
 void StressTest(const int &size, const int &nrLoops) {
     cout << "Stress Test" << endl;
     cout << endl;
@@ -84,6 +87,9 @@ void StressTest(const int &size, const int &nrLoops) {
     cout << endl;
 }
 
+// perform a basic test.
+// a and b vectors are predefined
+// the correct answer is known.
 void BasicTest() {
     cout << "Basic Test" << endl;
     cout << endl;
@@ -98,6 +104,7 @@ void BasicTest() {
     cout << endl;
 }
 
+// display both vectors for debugging purposes.
 void Display(vector<int> &a, vector<int> &b) {
     for (size_t p = 0; p < a.size(); p++) cout << setw(WIDTH) << p;
     cout << endl;
@@ -109,6 +116,7 @@ void Display(vector<int> &a, vector<int> &b) {
     cout << endl;
 }
 
+// calculate the time, in ms, between two events.
 double Duration(const hiResClock::time_point &start,
                 const hiResClock::time_point &stop) {
     double us = duration_cast<microseconds>(stop - start).count();
