@@ -1,6 +1,6 @@
-# Basic CUDA sample.
+# Basic CPP sample.
 
-This lesson demonstrates how to use CUDA with CMake.
+Hello World!
 
 ## Usage
 
