@@ -59,9 +59,6 @@ void StressTest(const int &size, const int &nrLoops) {
 
     assert(size <= (int)1e5);
 
-    hiResClock::time_point start;
-    hiResClock::time_point stop;
-
     vector<int> a(size);
     vector<int> b(size);
 
@@ -73,9 +70,9 @@ void StressTest(const int &size, const int &nrLoops) {
 
     int pairs = 0;
 
-    start = hiResClock::now();
+    hiResClock::time_point start = hiResClock::now();
     for (int l = 0; l < nrLoops; l++) pairs = solution(a, b);
-    stop = hiResClock::now();
+    hiResClock::time_point stop = hiResClock::now();
 
     double exeTime = Duration(start, stop) / nrLoops;
 
