@@ -99,13 +99,13 @@ void BasicTest() {
 }
 
 void Display(vector<int> &a, vector<int> &b) {
-    for (int p = 0; p < a.size(); p++) cout << setw(WIDTH) << p;
+    for (size_t p = 0; p < a.size(); p++) cout << setw(WIDTH) << p;
     cout << endl;
 
-    for (int p = 0; p < a.size(); p++) cout << setw(WIDTH) << a[p];
+    for (size_t p = 0; p < a.size(); p++) cout << setw(WIDTH) << a[p];
     cout << endl;
 
-    for (int p = 0; p < a.size(); p++) cout << setw(WIDTH) << b[p];
+    for (size_t p = 0; p < a.size(); p++) cout << setw(WIDTH) << b[p];
     cout << endl;
 }
 
