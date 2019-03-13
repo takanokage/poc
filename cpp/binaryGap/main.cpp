@@ -12,29 +12,58 @@ using namespace std;
 
 typedef unsigned int uint;
 
+void TestNext(const int& n);
 void TestGenerateGapSpecs(const int& nrTests = 10);
-void TestGenerate(const uint& minSize, const uint& maxSize, const int& nrTests = 10);
+void TestGenerate(const uint& minSize,
+                  const uint& maxSize,
+                  const int& nrTests = 10);
 void TestBits(const int& nrTests = 10);
 
 void generateGapSpecs(const uint& minSize,
-                    const uint& maxSize,
-                    uint& size,
-                    uint& gapStart,
-                    uint& gapEnd);
+                      const uint& maxSize,
+                      uint& size,
+                      uint& gapStart,
+                      uint& gapEnd);
 int generate(const uint& size);
 int generate(const uint& size, const uint& gapStart, const uint& gapEnd);
 vector<uint> getBits(const int& n);
 int getInt(const vector<uint>& bits);
 string getString(const vector<uint>& bits);
+vector<uint> nextTwo(const vector<uint>& bits, const uint& i);
+uint nextSymbol(const vector<uint>& bits, const uint& i);
 int solution(int N);
 
 int main(int argc, char** argv) {
     int nrTests = 10;
 
-    TestGenerateGapSpecs(1000);
-    // TestGenerate(7, 18);
+    int n = atoi(argv[1]);
+    TestNext(n);
+    int maxGap = solution(n);
+    cout << "max gap: " << maxGap << endl;
 
     return 0;
+}
+
+void TestNext(const int& n)
+{
+    vector<uint> bits = getBits(n);
+
+    for (size_t i = 0; i < bits.size(); i++) cout << bits[i];
+    cout << endl;
+
+    for (size_t i = 0; i < bits.size(); i++) {
+        vector<uint> two = nextTwo(bits, i);
+
+        for (size_t j = 0; j < i; j++) cout << " ";
+        for (size_t j = 0; j < two.size(); j++) cout << two[j];
+        cout << endl;
+    }
+    for (size_t i = 0; i < bits.size(); i++) {
+        uint symbol = nextSymbol(bits, i);
+        for (size_t j = 0; j < i; j++) cout << " ";
+        cout << symbol;
+        cout << endl;
+    }
 }
 
 // validate methods: generateGapSpecs
@@ -66,7 +95,9 @@ void TestGenerateGapSpecs(const int& nrTests) {
 }
 
 // validate methods: generate
-void TestGenerate(const uint& minSize, const uint& maxSize, const int& nrTests) {
+void TestGenerate(const uint& minSize,
+                  const uint& maxSize,
+                  const int& nrTests) {
     srand(time(NULL));
     for (int t = 0; t < nrTests; t++) {
         uint size = 0;
@@ -171,8 +202,7 @@ int generate(const uint& size, const uint& gapStart, const uint& gapEnd) {
     }
 
     // end the gap
-    if (gapStart < gapEnd)
-    {
+    if (gapStart < gapEnd) {
         output <<= 1;
         output += 1;
     }
@@ -191,8 +221,6 @@ int generate(const uint& size, const uint& gapStart, const uint& gapEnd) {
 // convert integer to a sequence of bits
 vector<uint> getBits(const int& n) {
     vector<uint> bits(0);
-
-    int failSafe = 64;
 
     int crtN = n;
     while (0 != crtN) {
@@ -224,5 +252,50 @@ string getString(const vector<uint>& bits) {
     return binary.str();
 }
 
+vector<uint> nextTwo(const vector<uint>& bits, const uint& i) {
+    vector<uint> output(0);
+
+    if (i < bits.size()) output.push_back(bits[i + 0]);
+    if ((i + 1) < bits.size()) output.push_back(bits[i + 1]);
+
+    return output;
+}
+
+uint nextSymbol(const vector<uint>& bits, const uint& i) {
+    uint output = 0;
+
+    if (i < bits.size()) output += bits[i + 0];
+    output <<= 1;
+    if ((i + 1) < bits.size()) output += bits[i + 1];
+
+    return output;
+}
+
 // parse an array of bits and return the size of the longest gap.
-int solution(int N) { return 0; }
+int solution(int n) {
+    uint gapStart = 0;
+    uint gapEnd = 0;
+    int maxGap = -1;
+
+    vector<uint> bits = getBits(n);
+
+    for (size_t i = 0; i < bits.size(); i++) {
+        uint symbol = nextSymbol(bits, i);
+
+        switch (symbol) {
+            case 2:
+                gapStart = i; cout << "@" << i << endl;
+                break;
+            case 1: {
+                gapEnd = i; cout << "!" << i << endl;
+                int gap = gapEnd - gapStart;
+                if (maxGap < gap)
+                    maxGap = gap;
+                break;
+            }
+            default: break;
+        }
+    }
+
+    return maxGap;
+}
