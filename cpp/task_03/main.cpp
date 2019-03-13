@@ -36,6 +36,15 @@ int solution(vector<int> &a, vector<int> &b) {
     int pairs = 0;
 
     for (size_t p = 0; p < a.size() - 1; p++) {
+        // P * Q >= P + Q <=>
+        // P * Q - Q >= P <=>
+        // Q * (P - 1) >= P
+        // but P & Q are both positive real numbers
+        // so if (P - 1) is negative or zero than Q * (P - 1) can't be > P.
+        // if (P <= 1) we don't need to go any further but...
+        // P is less than 1 only when a[p] is zero
+        if (0 == a[p]) continue;
+
         float P = a[p] + b[p] / 1e6f;
 
         for (size_t q = p + 1; q < a.size(); q++) {
