@@ -8,57 +8,27 @@
 #include <vector>
 using namespace std;
 
-#define WIDTH 10
+#include <chrono>
+using namespace chrono;
+using hiResClock = std::chrono::high_resolution_clock;
 
-void basicTest();
+#define WIDTH 15
+
 int solution(vector<int> &a, vector<int> &b);
-void display(vector<int> &a, vector<int> &b);
-void stressTest(const int &size, const int& nrLoops = 1);
+void BasicTest();
+void StressTest(const int &size, const int &nrLoops = 1);
+void Display(vector<int> &a, vector<int> &b);
+double Duration(const hiResClock::time_point &start,
+                const hiResClock::time_point &stop);
 
 int main(int argc, char **argv) {
-    // basicTest();
+    // BasicTest();
 
-    int size = 10000;
-    stressTest(size, 10);
+    int size = atoi(argv[1]);
+    int nrLoops = atoi(argv[2]);
+    StressTest(size, nrLoops);
 
     return 0;
-}
-
-void stressTest(const int &size, const int& nrLoops) {
-    cout << "Stress Test" << endl;
-    cout << endl;
-
-    assert(size <= (int)1e5);
-    vector<int> a(size);
-    vector<int> b(size);
-
-    srand(time(NULL));
-    for (int i = 0; i < size; i++) {
-        a[i] = (int)(1e3f * rand() / RAND_MAX);
-        b[i] = (int)((1e6f - 1) * rand() / RAND_MAX);
-    }
-
-    int pairs = 0;
-
-    for (int l = 0; l < nrLoops; l++)
-        pairs = solution(a, b);
-
-    cout << "pairs: " << pairs << endl;
-    cout << endl;
-}
-
-void basicTest() {
-    cout << "Basic Test" << endl;
-    cout << endl;
-
-    vector<int> a = {0, 1, 2, 2, 3, 5};
-    vector<int> b = {500000, 500000, 0, 0, 0, 20000};
-
-    display(a, b);
-
-    int pairs = solution(a, b);
-    cout << "pairs: " << pairs << endl;
-    cout << endl;
 }
 
 // pairs
@@ -81,7 +51,54 @@ int solution(vector<int> &a, vector<int> &b) {
     return min(pairs, (int)1e9);
 }
 
-void display(vector<int> &a, vector<int> &b) {
+void StressTest(const int &size, const int &nrLoops) {
+    cout << "Stress Test" << endl;
+    cout << endl;
+
+    assert(size <= (int)1e5);
+
+    hiResClock::time_point start;
+    hiResClock::time_point stop;
+
+    vector<int> a(size);
+    vector<int> b(size);
+
+    srand(time(NULL));
+    for (int i = 0; i < size; i++) {
+        a[i] = (int)(1e3f * rand() / RAND_MAX);
+        b[i] = (int)((1e6f - 1) * rand() / RAND_MAX);
+    }
+
+    int pairs = 0;
+
+    start = hiResClock::now();
+    for (int l = 0; l < nrLoops; l++) pairs = solution(a, b);
+    stop = hiResClock::now();
+
+    double exeTime = Duration(start, stop) / nrLoops;
+
+    cout << setw(WIDTH) << "N: " << size << endl;
+    cout << setw(WIDTH) << "nr. loops: " << nrLoops << endl;
+    cout << setw(WIDTH) << "pairs: " << pairs << endl;
+    cout << setw(WIDTH) << "duration: " << exeTime << "ms" << endl;
+    cout << endl;
+}
+
+void BasicTest() {
+    cout << "Basic Test" << endl;
+    cout << endl;
+
+    vector<int> a = {0, 1, 2, 2, 3, 5};
+    vector<int> b = {500000, 500000, 0, 0, 0, 20000};
+
+    Display(a, b);
+
+    int pairs = solution(a, b);
+    cout << "pairs: " << pairs << endl;
+    cout << endl;
+}
+
+void Display(vector<int> &a, vector<int> &b) {
     for (int p = 0; p < a.size(); p++) cout << setw(WIDTH) << p;
     cout << endl;
 
@@ -90,4 +107,12 @@ void display(vector<int> &a, vector<int> &b) {
 
     for (int p = 0; p < a.size(); p++) cout << setw(WIDTH) << b[p];
     cout << endl;
+}
+
+double Duration(const hiResClock::time_point &start,
+                const hiResClock::time_point &stop) {
+    double us = duration_cast<microseconds>(stop - start).count();
+    double ms = us / 1000.0;
+
+    return ms;
 }

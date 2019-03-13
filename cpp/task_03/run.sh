@@ -2,4 +2,4 @@
 
 . name.sh
 
-./build/bin/$NAME
+./build/bin/$NAME 1000 10
