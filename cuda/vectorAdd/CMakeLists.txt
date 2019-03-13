@@ -13,7 +13,5 @@ message(STATUS "Using installed CUDA ${CUDA_VERSION}")
 # create target executable
 add_executable(${CMAKE_PROJECT_NAME} vectorAdd.cu main.cu)
 
-list(APPEND CUDA_NVCC_FLAGS -gencode arch=compute_61,code=sm_61)
-
 set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES
                       RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
