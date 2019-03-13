@@ -50,7 +50,6 @@ int solution(vector<int> &a, vector<int> &b) {
 
     return min(pairs, (int)1e9);
 }
-// ----------------------------------------------------------------------------
 
 // perform a test on randomly initialized a and b vectors
 // measure the average execution time over a number of loops
