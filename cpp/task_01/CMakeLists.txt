@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.0)
 
+set(CMAKE_CXX_STANDARD 11)
+
 # use the root folder as the project name
 get_filename_component(ProjectName ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 project(${ProjectName} LANGUAGES CXX)
