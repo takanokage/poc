@@ -4,7 +4,8 @@ cmake_minimum_required(VERSION 3.9)
 get_filename_component(ProjectName ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 project(${ProjectName} LANGUAGES CXX CUDA)
 
-list(APPEND CUDA_NVCC_FLAGS -gencode arch=compute_61,code=sm_61)
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # set(CMAKE_VERBOSE_MAKEFILE ON)
 
