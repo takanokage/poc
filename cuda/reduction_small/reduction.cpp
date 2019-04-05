@@ -43,16 +43,11 @@
 // CUDA Runtime
 #include <cuda_runtime.h>
 
-// Utilities and system includes
-// #include <helper_cuda.h>
-// #include <helper_functions.h>
 #include <algorithm>
 #include <strings.h>
 
-// includes, project
-#include "reduction.h"
-
 #include "performance.h"
+#include "reduction.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Program main
@@ -80,15 +75,15 @@ main(int argc, char **argv)
     {
         default:
         case REDUCE_INT:
-            bResult = runTest<int>(datatype);
+            bResult = runTest<int>();
             break;
 
         case REDUCE_FLOAT:
-            bResult = runTest<float>(datatype);
+            bResult = runTest<float>();
             break;
 
         case REDUCE_DOUBLE:
-            bResult = runTest<double>(datatype);
+            bResult = runTest<double>();
             break;
     }
 
@@ -283,7 +278,7 @@ T benchmarkReduce(int  n,
 ////////////////////////////////////////////////////////////////////////////////
 template <class T>
 bool
-runTest(ReduceType datatype)
+runTest()
 {
     cudaError_t status = cudaSuccess;
 
@@ -304,14 +299,10 @@ runTest(ReduceType datatype)
     for (int i=0; i<size; i++)
     {
         // Keep the numbers small so we don't get truncation error in the sum
-        if (datatype == REDUCE_INT)
-        {
+        if (std::is_integral<T>())
             h_idata[i] = (T)(rand() & 0xFF);
-        }
         else
-        {
             h_idata[i] = (rand() & 0xFF) / (T)RAND_MAX;
-        }
     }
 
     int numBlocks = 0;
@@ -362,14 +353,14 @@ runTest(ReduceType datatype)
     double threshold = 0;
     double diff = 0;
 
-    if (datatype == REDUCE_INT)
+    if (std::is_same<T, int>())
     {
         printf("\nGPU result = %d\n", (int)gpu_result);
         printf("CPU result = %d\n\n", (int)cpu_result);
     }
     else
     {
-        if (datatype == REDUCE_FLOAT)
+        if (std::is_same<T, float>())
         {
             precision = 8;
             threshold = 1e-8 * size;
@@ -393,7 +384,7 @@ runTest(ReduceType datatype)
     status = cudaFree(d_idata);
     status = cudaFree(d_odata);
 
-    if (datatype == REDUCE_INT)
+    if (std::is_same<T, int>())
     {
         return (gpu_result == cpu_result);
     }

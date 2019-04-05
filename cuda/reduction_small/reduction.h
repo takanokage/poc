@@ -53,6 +53,6 @@ void reduce(int size, int threads, int blocks,
             T *d_idata, T *d_odata);
 
 template <class T>
-bool runTest(ReduceType datatype);
+bool runTest();
 
 #endif
