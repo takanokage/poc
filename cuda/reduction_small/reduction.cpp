@@ -54,45 +54,6 @@
 
 #include "performance.h"
 
-enum ReduceType
-{
-    REDUCE_INT,
-    REDUCE_FLOAT,
-    REDUCE_DOUBLE
-};
-
-////////////////////////////////////////////////////////////////////////////////
-// declaration, forward
-template <class T>
-bool runTest(ReduceType datatype);
-
-#define MAX_BLOCK_DIM_SIZE 65535
-
-#ifdef WIN32
-#define strcasecmp strcmpi
-#endif
-
-extern "C"
-bool isPow2(unsigned int x)
-{
-    return ((x&(x-1))==0);
-}
-
-const char * getReduceTypeString(const ReduceType type)
-{
-    switch (type)
-    {
-    case REDUCE_INT:
-        return "int";
-    case REDUCE_FLOAT:
-        return "float";
-    case REDUCE_DOUBLE:
-        return "double";
-    default:
-        return "unknown";
-    }
-}
-
 ////////////////////////////////////////////////////////////////////////////////
 // Program main
 ////////////////////////////////////////////////////////////////////////////////
@@ -134,6 +95,21 @@ main(int argc, char **argv)
     printf(bResult ? "Test passed\n" : "Test failed!\n");
 }
 
+const char * getReduceTypeString(const ReduceType type)
+{
+    switch (type)
+    {
+    case REDUCE_INT:
+        return "int";
+    case REDUCE_FLOAT:
+        return "float";
+    case REDUCE_DOUBLE:
+        return "double";
+    default:
+        return "unknown";
+    }
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 //! Compute sum reduction on CPU
 //! We use Kahan summation for an accurate sum of large arrays.
@@ -169,10 +145,6 @@ unsigned int nextPow2(unsigned int x)
     x |= x >> 16;
     return ++x;
 }
-
-#ifndef MIN
-#define MIN(x,y) ((x < y) ? x : y)
-#endif
 
 ////////////////////////////////////////////////////////////////////////////////
 // Compute the number of threads and blocks to use for the given reduction kernel
